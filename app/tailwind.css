@@ -10,3 +10,138 @@ body {
     color-scheme: dark;
   }
 }
+
+/* Based on https://github.com/GeoffSelby/tailwind-md-base?tab=readme-ov-file#default-config */
+@layer base {
+  :root {
+    --color-background: 20 37 41;
+    --color-raised: 40 74 82;
+    --color-primary: 255 132 31;
+    --color-secondary: 255 163 92;
+    --color-accent: 192 53 57;
+  }
+
+  /* @font-face {
+    font-family: "Basteleur";
+    src: url("/fonts/Basteleur-Bold.woff2") format("woff2"),
+      url("/fonts/Basteleur-Bold.woff") format("woff"),
+      url("/fonts/Basteleur-Bold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Basteleur Moonlight";
+    src: url("/fonts/Basteleur-Moonlight.woff2") format("woff2"),
+      url("/fonts/Basteleur-Moonlight.woff") format("woff"),
+      url("/fonts/Basteleur-Moonlight.ttf") format("truetype");
+  } */
+
+  @font-face {
+    font-family: "Trickster";
+    src: url("../fonts/Trickster-Regular.woff") format("woff"),
+      url("../fonts/Trickster-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "ClashDisplay-Light";
+    src: url("../fonts/ClashDisplay-Light.woff2") format("woff2"),
+      url("../fonts/ClashDisplay-Light.woff") format("woff"),
+      url("../fonts/ClashDisplay-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "ClashDisplay-Semibold";
+    src: url("../fonts/ClashDisplay-Semibold.woff2") format("woff2"),
+      url("../fonts/ClashDisplay-Semibold.woff") format("woff"),
+      url("../fonts/ClashDisplay-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "IBM-BIOS";
+    src: url("../fonts/WebPlus_IBM_BIOS.woff") format("woff");
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold mt-8 mb-2 font-serif;
+  }
+
+  h1 {
+    @apply text-6xl text-center;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl font-sans;
+  }
+
+  h4 {
+    @apply text-xl font-sans;
+  }
+
+  h5 {
+    @apply text-lg font-sans;
+  }
+
+  h6 {
+    @apply text-base font-sans;
+  }
+
+  p {
+    @apply mb-2;
+  }
+
+  a {
+    @apply text-secondary underline underline-offset-2 font-semibold;
+  }
+
+  a:hover {
+    @apply text-primary;
+  }
+
+  blockquote {
+    @apply border-raised border-l-4 font-normal italic my-8 pl-6;
+  }
+
+  code {
+    @apply bg-primary text-background px-1 py-px rounded text-sm;
+  }
+
+  /* code block */
+  pre {
+    @apply mb-4;
+  }
+
+  hr {
+    @apply border-b border-raised my-12 rounded-full;
+  }
+
+  ul,
+  ol {
+    @apply list-inside my-4;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  .ascii-art {
+    @apply font-['IBM-BIOS'] leading-none tracking-normal text-xs;
+  }
+}

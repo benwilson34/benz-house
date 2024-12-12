@@ -1,0 +1,55 @@
+---
+meta:
+  title: opinions
+  datePublished: 2024-12-10
+---
+
+import { dateLocaleStringOptions } from "../../util/format";
+
+# {frontmatter.meta.title}
+
+<em className="text-center text-xs">
+  {/* prettier-ignore */}
+  published on {new Date(frontmatter.meta.datePublished).toLocaleString(
+    undefined,
+    dateLocaleStringOptions
+  )}
+</em>
+
+---
+
+Below you will find my terrible opinion on various technologies and topics.
+
+## Web development
+
+**JavaScript**: the most flexible footgun ❤ `typeof null === 'object'`
+
+**TypeScript**: footgun with static typing 👍 now you can spend time writing type definition files instead of features
+
+**Python**: I don't really like the syntax tbh
+
+**Node.js**: 💖
+
+**React.js**: 💖
+
+**Next.js**: some nice ideas but why is it so hard to configure? Also is Vercel trapping devs?
+
+**Remix.js**: pretty neat so far. I don't get why I can't deeply nest route files tho
+
+**Next Auth aka Auth.js**: why is it so difficult to get the `sub` field of a JWT 🥴
+
+## Native development
+
+**C**: I think I love the manual more than the language itself
+
+**C++**: I've tried to pick it up a few times and it's just too ugly
+
+**Java**: the ugliest most useful language that I'll never write again
+
+**Rust**: haven't finished the tutorial yet 😌
+
+## Web architecture
+
+**Distributed monolith**: underrated pattern. Maybe it's a good thing that your bad app idea doesn't scale?
+
+**Microservices**: more of a guideline than a strict thing to aim for

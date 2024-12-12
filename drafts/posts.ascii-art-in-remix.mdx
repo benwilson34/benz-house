@@ -1,0 +1,78 @@
+---
+meta:
+  title: ASCII Art in React.js
+  datePublished: 2024-12-10
+---
+
+import { dateLocaleStringOptions } from "../../util/format";
+
+# {frontmatter.meta.title}
+
+<em className="text-center text-xs">
+  {/* prettier-ignore */}
+  published on {new Date(frontmatter.meta.datePublished).toLocaleString(
+    undefined,
+    dateLocaleStringOptions
+  )}
+</em>
+
+---
+
+TODO rename article to like "ASCII art on the modern web"? Then make "ASCII art in React/Remix" a separate article?
+
+TODO intro about ascii art, my logo, etc
+
+## Making the art
+
+For my logo I used the excellent [REXpaint](https://www.gridsagegames.com/rexpaint/index.html) made by [Josh Ge/Grid Sage Games](https://www.gridsagegames.com/). The app and info about its usage are detailed on the REXpaint site.
+
+### Exporting
+
+REXpaint obviously allows for very detailed and sophisticated ASCII art, but I know mine is going to be monochrome, so I'm not going to use any of the color/layer data from the native `.rx` file. Instead I'll simply [export the file as text](https://github.com/Lucide/REXPaint-manual/blob/master/manual.md#appendix-e-exportable-text-formats-txt-csv-xml-bbcode) by pressing `Ctrl-t`. This saves a `.txt` file in the `images` directory local to the REXpaint app.
+
+## Using the art
+
+At this stage, you could simply copy and paste the contents of the file into your project, perhaps like so:
+
+```ts
+// TODO
+```
+
+I'm using Remix, which uses Vite/Rollup under the hood, so here's how I use the `.txt` file.
+
+### Loading the ASCII data
+
+You might be tempted to try to `import` the `txt` file:
+
+```ts
+import asciiArtString from "./ascii-art.txt";
+```
+
+This is the right thinking! But if you print out `asciiArtString`, you'll see that it's actually just the URL to the file:
+
+```ts
+console.log({ asciiArtString });
+// -> "TODO"
+```
+
+The key here is to instruct Vite to [import the contents of the file as a string](https://vite.dev/guide/assets#importing-asset-as-string), which is done by adding the `?raw` suffix to the filepath:
+
+```ts
+import asciiArtString from "./ascii-art.txt?raw";
+```
+
+## Importing the font
+
+Take note of the font that REXpaint is using for the art file.
+
+In REXpaint it's called "CP437" which happens to also be called "IBM PC BIOS". I thought I could just pull the font file directly out of the REXpaint app directory, but it's using individual `.png` images for each symbol, and I need a single webfont in a format like `.woff`. I found a IBM BIOS webfont in [The Ultimate Oldschool PC Font Pack (v2.2)](https://int10h.org/oldschool-pc-fonts/fontlist/font?ibm_bios) which I happily [leeched](https://int10h.org/oldschool-pc-fonts/download/) and copied into my project (thanks VileR!).
+
+TODO font-face
+
+TODO CSS rules and/or Tailwind classes
+
+## Accessibility
+
+TODO refer to this again https://stackoverflow.com/questions/74966926/how-to-use-ascii-art-within-react-projects
+
+TODO aria, alt text, etc.
