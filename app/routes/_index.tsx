@@ -27,7 +27,7 @@ export default function Index() {
         <div className="flex flex-col text-6xl mb-6 w-fit border-y border-primary">
           <span className="font-semibold tracking-wider">&quot;yer in</span>
           <span className="font-serif text-8xl -rotate-2">
-            ben&apos;s house
+            ben&apos;z house
           </span>
           <div className="flex flex-row">
             <span className="grow"></span>
