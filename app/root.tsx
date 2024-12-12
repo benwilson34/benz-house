@@ -51,7 +51,7 @@ export default function App() {
             <pre className="ascii-art">{asciiArtLogoString}</pre>
           </div>
 
-          <h1 className="italic text-nowrap text-4xl mt-4 mb-1 mr-1">
+          <h1 className="text-nowrap text-4xl mt-4 mb-1 mr-1">
             <Link to="/" className="no-underline">
               ben&apos;z house
             </Link>

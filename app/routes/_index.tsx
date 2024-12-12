@@ -24,13 +24,20 @@ export default function Index() {
   return (
     <div>
       <div className="flex flex-row justify-center">
-        <div className="flex flex-col text-6xl mb-6 w-fit border-y border-primary">
+        <div className="flex flex-col text-4xl mb-6 w-fit border-y border-primary">
           <span className="font-semibold tracking-wider">&quot;yer in</span>
-          <span className="font-serif text-8xl -rotate-2">
+
+          <div className="relative">
+            <div className="absolute top-6 left-0 bg-raised h-16 w-full"></div>
+          </div>
+
+          <span className="relative -top-2 font-serif text-8xl -rotate-3">
             ben&apos;z house
           </span>
+
           <div className="flex flex-row">
             <span className="grow"></span>
+
             <span className="font-semibold tracking-wider">
               now, baby&quot;
             </span>
