@@ -64,7 +64,7 @@ export default function Index() {
         ,{" "}
         <a
           href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-          download="WilsonBenjamin_Resume_2024-10-28.pdf"
+          download="WilsonBenjamin_Resume_2024-10-21.pdf"
         >
           my résumé
         </a>
