@@ -144,4 +144,107 @@ body {
   .ascii-art {
     @apply font-['IBM-BIOS'] leading-none tracking-normal text-xs;
   }
+
+  .styled-scrollbars {
+    --scrollbar-foreground: rgb(var(--color-primary));
+    --scrollbar-background: transparent;
+    /* Foreground, Background */
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+  }
+
+  .styled-scrollbars::-webkit-scrollbar {
+    width: 10px; /* Mostly for vertical scrollbars */
+    height: 10px; /* Mostly for horizontal scrollbars */
+  }
+
+  .styled-scrollbars::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--scrollbar-foreground);
+  }
+
+  .styled-scrollbars::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--scrollbar-background);
+  }
+
+  .nav-icon {
+    cursor: pointer;
+    display: inline-block;
+    /* margin-right: 1rem; */
+    width: 2rem;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+  }
+
+  .nav-icon:after,
+  .nav-icon:before,
+  .nav-icon span {
+    margin: 0.333rem auto;
+    display: block;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    content: "";
+    height: 0.333rem;
+    width: 2rem;
+    background-color: rgb(var(--color-secondary));
+  }
+
+  .nav-icon.nav-icon--open:before {
+    transform: translateY(0.666rem) rotate(135deg);
+    -webkit-transform: translateY(0.666rem) rotate(135deg);
+    -moz-transform: translateY(0.666rem) rotate(135deg);
+  }
+
+  .nav-icon.nav-icon--open:after {
+    transform: translateY(-0.666rem) rotate(-135deg);
+    -moz-transform: translateY(-0.666rem) rotate(-135deg);
+    -webkit-transform: translateY(-0.666rem) rotate(-135deg);
+  }
+
+  .nav-icon.nav-icon--open span {
+    transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+  }
+
+  .animate {
+    transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -webkit-transition: all 0.35s ease-out;
+  }
+
+  .nav-menu {
+    overflow: hidden;
+    /* hidden by default */
+    height: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .nav-menu.open {
+    /* subtract the height of the nav-header */
+    /* height: calc(100vh - 4rem); */
+    height: 100%;
+  }
+
+  .nav-menu > .nav-link-container {
+    /* again, subtract the height of the nav-header to v-center the elements */
+    height: calc(100% - 4rem);
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 6rem;
+    color: white;
+  }
+
+  /* .nav-menu > .nav-link-container > a {
+    text-align: center;
+    color: #fec31d;
+    font-size: 2rem;
+  } */
 }

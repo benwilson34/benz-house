@@ -10,6 +10,8 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import asciiArtLogoString from "./ascii-art-logo.txt?raw";
+import React from "react";
+import { useBreakpoint } from "./hooks/useBreakpoint";
 
 // TODO remove these fonts?
 export const links: LinksFunction = () => [
@@ -44,66 +46,175 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const { isBelowMd: isMobileLayout } = useBreakpoint("md");
+  const [isMobileNavOpen, setIsMobileNavOpen] = React.useState<boolean>(false);
+  const toggleIsMobileNavOpen = () =>
+    setIsMobileNavOpen((isCurrentlyOpen) => !isCurrentlyOpen);
+
   return (
-    <div className="flex flex-row w-full h-screen max-h-screen p-4 bg-background text-primary tracking-wider">
-      <div className="h-full flex flex-col justify-center mr-4">
-        <div className="h-fit grow-0 border-primary border rounded-xl my-4 px-2 pt-2 -rotate-2">
+    <div className="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider">
+      <div
+        id="desktop-nav"
+        className="hidden md:h-full md:flex flex-col justify-center mx-4"
+      >
+        <div className="h-fit grow-0 border-primary border rounded-xl p-2 -rotate-2">
           <div className="w-full flex flex-row justify-center">
             <pre className="ascii-art">{asciiArtLogoString}</pre>
           </div>
 
-          <h1 className="text-nowrap text-4xl mt-4 mb-1 mr-1">
+          <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
             <Link reloadDocument to="/" className="no-underline">
               ben&apos;z house
             </Link>
           </h1>
 
-          <p className="text-center">full-stack web dev and more</p>
+          <p className="text-center leading-none">
+            full-stack web dev
+            <br />
+            and more
+          </p>
 
-          <ul>
-            {/* <li>
-              <Link to="/opinions">opinions</Link>
-            </li> */}
-            <li>
-              <Link reloadDocument to="/projects">
-                projects
-              </Link>
-            </li>
-            <li>
-              <a
-                href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-                download="WilsonBenjamin_Resume_2024-10-28.pdf"
-              >
-                résumé
-              </a>
-              <span className="bg-primary ml-2 px-2 text-background rounded-lg font-semibold">
-                hire me!!
-              </span>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/benwilson34/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/benwilson34"
-                target="_blank"
-                rel="noreferrer"
-              >
-                github
-              </a>
-            </li>
-          </ul>
+          <div className="flex flex-row">
+            <pre className="mb-0">{"~> "}</pre>
+            <Link reloadDocument to="/projects">
+              projects
+            </Link>
+          </div>
+
+          <div className="flex flex-row">
+            <pre className="mb-0">{"~> "}</pre>
+            <a
+              href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
+              download="WilsonBenjamin_Resume_2024-10-21.pdf"
+            >
+              résumé
+            </a>
+            <span className="bg-primary h-fit ml-2 px-2 text-background rounded-lg font-semibold">
+              hire me!!
+            </span>
+          </div>
+
+          <div className="flex flex-row">
+            <pre className="mb-0">{"~> "}</pre>
+            <a
+              href="https://www.linkedin.com/in/benwilson34/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              linkedin
+            </a>
+          </div>
+
+          <div className="flex flex-row">
+            <pre className="mb-0">{"~> "}</pre>
+            <a
+              href="https://github.com/benwilson34"
+              target="_blank"
+              rel="noreferrer"
+            >
+              github
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="grow flex justify-center overflow-auto">
-        <div className="mdx-content px-4 max-w-2xl">
+      {isMobileLayout && (
+        <>
+          <div
+            id="mobile-nav"
+            className="w-full md:hidden flex flex-col px-4 pt-2 bg-background z-50"
+          >
+            <div className="flex flex-row">
+              <h1 className="grow text-nowrap text-left text-4xl mt-0">
+                <Link reloadDocument to="/" className="no-underline">
+                  ben&apos;z house
+                </Link>
+              </h1>
+
+              <button
+                className={`nav-icon ${
+                  isMobileNavOpen ? "nav-icon--open" : ""
+                }`}
+                onClick={toggleIsMobileNavOpen}
+              >
+                <span></span>
+              </button>
+            </div>
+
+            <div className="border-b border-raised"></div>
+          </div>
+
+          {/* TODO maybe there's a way to not duplicate this */}
+          <div
+            className={`nav-menu w-full flex flex-row justify-center pt-14 z-40 bg-background animate ${
+              isMobileNavOpen ? "open" : ""
+            }`}
+          >
+            <div className="w-fit h-fit flex flex-col rounded-xl p-2 text-3xl gap-6">
+              <div className="w-full flex flex-row justify-center">
+                <pre className="ascii-art">{asciiArtLogoString}</pre>
+              </div>
+
+              {/* <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
+            <Link reloadDocument to="/" className="no-underline">
+              ben&apos;z house
+            </Link>
+          </h1>
+
+          <p className="text-center leading-none">
+            full-stack web dev
+            <br />
+            and more
+          </p> */}
+
+              <div className="flex flex-row">
+                <pre className="mb-0">{"~> "}</pre>
+                <Link reloadDocument to="/projects">
+                  projects
+                </Link>
+              </div>
+
+              <div className="flex flex-row relative">
+                <pre className="mb-0">{"~> "}</pre>
+                <a
+                  href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
+                  download="WilsonBenjamin_Resume_2024-10-21.pdf"
+                >
+                  résumé
+                </a>
+                <span className="absolute left-full -top-2 bg-primary h-fit ml-2 px-2 py-2 text-xl text-background rounded-lg font-semibold -rotate-6 leading-none">
+                  hire me!!
+                </span>
+              </div>
+
+              <div className="flex flex-row">
+                <pre className="mb-0">{"~> "}</pre>
+                <a
+                  href="https://www.linkedin.com/in/benwilson34/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  linkedin
+                </a>
+              </div>
+
+              <div className="flex flex-row">
+                <pre className="mb-0">{"~> "}</pre>
+                <a
+                  href="https://github.com/benwilson34"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  github
+                </a>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className="grow flex justify-center overflow-auto styled-scrollbars">
+        <div className="mdx-content px-4 pt-2 pb-8 max-w-2xl">
           <Outlet />
         </div>
       </div>

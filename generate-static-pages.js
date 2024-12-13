@@ -1,6 +1,7 @@
 /**
  * Based on Habib's blog post,
  * see https://habibhinn.com/blog/how-to-generate-a-static-site-using-remix-run-framework
+ * and https://github.com/mjackson/remix-ssg-example
  */
 import fs from "fs";
 import path from "path";
