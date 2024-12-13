@@ -3,8 +3,8 @@ import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "ben'z house" },
+    { name: "description", content: "ben wilson's personal site" },
   ];
 };
 
@@ -58,7 +58,10 @@ export default function Index() {
 
       <p>
         Use the links in the sidebar to check out{" "}
-        <Link to="/projects">what I&apos;ve been working on</Link>,{" "}
+        <Link reloadDocument to="/projects">
+          what I&apos;ve been working on
+        </Link>
+        ,{" "}
         <a
           href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
           download="WilsonBenjamin_Resume_2024-10-28.pdf"
@@ -72,7 +75,11 @@ export default function Index() {
 
       <p>
         If you&apos;re a web geek like me, there are details about how this site
-        was made on <Link to="/about">the about page</Link>.
+        was made on{" "}
+        <Link reloadDocument to="/about">
+          the about page
+        </Link>
+        .
       </p>
 
       {/* <ul>

@@ -11,6 +11,7 @@ import type { LinksFunction } from "@remix-run/node";
 import "./tailwind.css";
 import asciiArtLogoString from "./ascii-art-logo.txt?raw";
 
+// TODO remove these fonts?
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -52,7 +53,7 @@ export default function App() {
           </div>
 
           <h1 className="text-nowrap text-4xl mt-4 mb-1 mr-1">
-            <Link to="/" className="no-underline">
+            <Link reloadDocument to="/" className="no-underline">
               ben&apos;z house
             </Link>
           </h1>
@@ -64,7 +65,9 @@ export default function App() {
               <Link to="/opinions">opinions</Link>
             </li> */}
             <li>
-              <Link to="/projects">projects</Link>
+              <Link reloadDocument to="/projects">
+                projects
+              </Link>
             </li>
             <li>
               <a
@@ -78,10 +81,22 @@ export default function App() {
               </span>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/benwilson34/">linkedin</a>
+              <a
+                href="https://www.linkedin.com/in/benwilson34/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                linkedin
+              </a>
             </li>
             <li>
-              <a href="https://github.com/benwilson34">github</a>
+              <a
+                href="https://github.com/benwilson34"
+                target="_blank"
+                rel="noreferrer"
+              >
+                github
+              </a>
             </li>
           </ul>
         </div>
