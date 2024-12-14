@@ -52,7 +52,7 @@ export default function App() {
     setIsMobileNavOpen((isCurrentlyOpen) => !isCurrentlyOpen);
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-dvh max-h-screen bg-background text-primary tracking-wider">
+    <div className="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider">
       <div
         id="desktop-nav"
         className="hidden md:h-full md:flex flex-col justify-center mx-4"
