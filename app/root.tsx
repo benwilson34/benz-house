@@ -52,7 +52,7 @@ export default function App() {
     setIsMobileNavOpen((isCurrentlyOpen) => !isCurrentlyOpen);
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider">
+    <div className="flex flex-col md:flex-row w-full h-dvh max-h-screen bg-background text-primary tracking-wider">
       <div
         id="desktop-nav"
         className="hidden md:h-full md:flex flex-col justify-center mx-4"
@@ -150,7 +150,7 @@ export default function App() {
               isMobileNavOpen ? "open" : ""
             }`}
           >
-            <div className="w-fit h-fit flex flex-col rounded-xl p-2 text-3xl gap-6">
+            <div className="w-fit h-fit flex flex-col items-center rounded-xl p-2 text-3xl gap-6">
               <div className="w-full flex flex-row justify-center">
                 <pre className="ascii-art">{asciiArtLogoString}</pre>
               </div>
@@ -168,14 +168,14 @@ export default function App() {
           </p> */}
 
               <div className="flex flex-row">
-                <pre className="mb-0">{"~> "}</pre>
+                {/* <pre className="mb-0">{"~> "}</pre> */}
                 <Link reloadDocument to="/projects">
                   projects
                 </Link>
               </div>
 
               <div className="flex flex-row relative">
-                <pre className="mb-0">{"~> "}</pre>
+                {/* <pre className="mb-0">{"~> "}</pre> */}
                 <a
                   href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
                   download="WilsonBenjamin_Resume_2024-10-21.pdf"
@@ -188,7 +188,7 @@ export default function App() {
               </div>
 
               <div className="flex flex-row">
-                <pre className="mb-0">{"~> "}</pre>
+                {/* <pre className="mb-0">{"~> "}</pre> */}
                 <a
                   href="https://www.linkedin.com/in/benwilson34/"
                   target="_blank"
@@ -199,7 +199,7 @@ export default function App() {
               </div>
 
               <div className="flex flex-row">
-                <pre className="mb-0">{"~> "}</pre>
+                {/* <pre className="mb-0">{"~> "}</pre> */}
                 <a
                   href="https://github.com/benwilson34"
                   target="_blank"
