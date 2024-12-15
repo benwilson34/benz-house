@@ -45,6 +45,8 @@ export default function Index() {
         </div>
       </div>
 
+      <div className="border-t border-raised mb-10"></div>
+
       <p>
         Hi, I&apos;m Ben (he/him)! I&apos;m a full-stack web engineer by trade
         and proud multidisciplinarian. I like video games and music and

@@ -19,6 +19,7 @@ body {
     --color-primary: 255 132 31;
     --color-secondary: 255 163 92;
     --color-accent: 192 53 57;
+    --nav-icon-width: 1.5rem;
   }
 
   /* @font-face {
@@ -125,7 +126,7 @@ body {
   }
 
   hr {
-    @apply border-b border-raised my-12 rounded-full;
+    @apply border-raised my-12;
   }
 
   ul,
@@ -171,7 +172,7 @@ body {
     cursor: pointer;
     display: inline-block;
     /* margin-right: 1rem; */
-    width: 2rem;
+    width: var(--nav-icon-width);
     transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
@@ -180,27 +181,30 @@ body {
   .nav-icon:after,
   .nav-icon:before,
   .nav-icon span {
-    margin: 0.333rem auto;
+    margin: calc(var(--nav-icon-width) / 6) auto;
     display: block;
     transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     content: "";
-    height: 0.333rem;
-    width: 2rem;
+    height: calc(var(--nav-icon-width) / 6);
+    width: var(--nav-icon-width);
     background-color: rgb(var(--color-primary));
   }
 
   .nav-icon.nav-icon--open:before {
-    transform: translateY(0.666rem) rotate(135deg);
-    -webkit-transform: translateY(0.666rem) rotate(135deg);
-    -moz-transform: translateY(0.666rem) rotate(135deg);
+    transform: translateY(calc(var(--nav-icon-width) / 3)) rotate(135deg);
+    -webkit-transform: translateY(calc(var(--nav-icon-width) / 3))
+      rotate(135deg);
+    -moz-transform: translateY(calc(var(--nav-icon-width) / 3)) rotate(135deg);
   }
 
   .nav-icon.nav-icon--open:after {
-    transform: translateY(-0.666rem) rotate(-135deg);
-    -moz-transform: translateY(-0.666rem) rotate(-135deg);
-    -webkit-transform: translateY(-0.666rem) rotate(-135deg);
+    transform: translateY(calc(-1 * var(--nav-icon-width) / 3)) rotate(-135deg);
+    -moz-transform: translateY(calc(-1 * var(--nav-icon-width) / 3))
+      rotate(-135deg);
+    -webkit-transform: translateY(calc(-1 * var(--nav-icon-width) / 3))
+      rotate(-135deg);
   }
 
   .nav-icon.nav-icon--open span {
