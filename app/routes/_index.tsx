@@ -47,8 +47,8 @@ export default function Index() {
 
       <p>
         Hi, I&apos;m Ben (he/him)! I&apos;m a full-stack web engineer by trade
-        and proud multidisciplinarian otherwise. I like video games and music
-        and humanity.
+        and proud multidisciplinarian. I like video games and music and
+        humanity.
       </p>
 
       <p>

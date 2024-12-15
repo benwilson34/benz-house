@@ -45,6 +45,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+function Footer() {
+  const currentYear = new Date().getFullYear();
+  return (
+    <div className="mt-10 text-center italic text-xs">
+      <div className="border-b border-raised w-full mb-4"></div>
+      No rights reserved {currentYear}
+      {/* This is needed to properly space after the footer when the page overflows */}
+      <div className="mt-4"></div>
+    </div>
+  );
+}
+
 export default function App() {
   const { isBelowMd: isMobileLayout } = useBreakpoint("md");
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState<boolean>(false);
@@ -63,7 +75,7 @@ export default function App() {
           </div>
 
           <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
-            <Link reloadDocument to="/" className="no-underline">
+            <Link reloadDocument to="/" className="no-underline text-primary">
               ben&apos;z house
             </Link>
           </h1>
@@ -122,11 +134,15 @@ export default function App() {
         <>
           <div
             id="mobile-nav"
-            className="w-full md:hidden flex flex-col px-4 pt-2 bg-background z-50"
+            className="w-full md:hidden flex flex-col px-4 h-14 bg-background z-50 fixed"
           >
-            <div className="flex flex-row">
-              <h1 className="grow text-nowrap text-left text-4xl mt-0">
-                <Link reloadDocument to="/" className="no-underline">
+            <div className="grow flex flex-row items-center justify-between">
+              <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3">
+                <Link
+                  reloadDocument
+                  to="/"
+                  className="no-underline text-primary"
+                >
                   ben&apos;z house
                 </Link>
               </h1>
@@ -213,9 +229,13 @@ export default function App() {
         </>
       )}
 
-      <div className="grow flex justify-center overflow-auto styled-scrollbars">
-        <div className="mdx-content px-4 pt-2 pb-8 max-w-2xl">
-          <Outlet />
+      <div className="grow flex justify-center mt-14 md:mt-0 overflow-auto styled-scrollbars">
+        <div className="flex flex-col justify-between">
+          <div className="mdx-content px-4 pt-2 max-w-2xl">
+            <Outlet />
+          </div>
+
+          <Footer />
         </div>
       </div>
     </div>

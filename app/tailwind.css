@@ -188,7 +188,7 @@ body {
     content: "";
     height: 0.333rem;
     width: 2rem;
-    background-color: rgb(var(--color-secondary));
+    background-color: rgb(var(--color-primary));
   }
 
   .nav-icon.nav-icon--open:before {
