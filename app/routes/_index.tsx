@@ -54,8 +54,8 @@ export default function Index() {
       </p>
 
       <p>
-        This is my personal corner of the internet. I make the rules here. This
-        is my house. My sanctuary. Stay awhile.
+        This is my personal corner of the internet. This is my house. My
+        sanctuary. Stay awhile.
       </p>
 
       <p>
