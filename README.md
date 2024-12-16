@@ -1,40 +1,37 @@
-# Welcome to Remix!
+# ben'z house
 
-- 📖 [Remix docs](https://remix.run/docs)
+This is the source for my personal site built with [Remix](https://remix.run/), [Tailwind](https://tailwindcss.com/), and [MDX](https://mdxjs.com/). It's hosted on [GitHub Pages](https://pages.github.com/) and uses [GitHub Actions](https://github.com/features/actions) to automatically deploy the site when I push up changes.
+
+This app is configured for static site generation (SSG). Read more here:
+
+- [generate-static-pages script](./generate-static-pages.js)
+- [How to Generate a Static Site Using Remix Run Framework](https://habibhinn.com/blog/how-to-generate-a-static-site-using-remix-run-framework) by Habib Hinn
+- [remix-ssg-example](https://github.com/mjackson/remix-ssg-example) by Michael Jackson
+
+Read more about how I set up and configured this project in [this article](https://benz.house/about).
 
 ## Development
 
-Run the dev server:
+Install Node 20. Clone this repo and `cd` into it. Install project dependencies:
+
+```shellscript
+npm install
+```
+
+Then run the dev server:
 
 ```shellscript
 npm run dev
 ```
 
-## Deployment
+## Building the site
 
-First, build your app for production:
-
-```sh
+```shellscript
 npm run build
 ```
 
-Then run the app in production mode:
+When complete, the build will be in the `./build/client` directory.
 
-```sh
-npm start
-```
+## Deployment
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+Changes are automatically built and deployed via a GitHub Actions [workflow](./.github/workflows/main.yml).
