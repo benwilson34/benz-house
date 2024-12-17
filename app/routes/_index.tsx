@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -59,30 +58,20 @@ export default function Index() {
       </p>
 
       <p>
-        Use the links in the sidebar to check out{" "}
-        <Link reloadDocument to="/projects">
-          what I&apos;ve been working on
-        </Link>
-        ,{" "}
-        <a
-          href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-          download="WilsonBenjamin_Resume_2024-10-21.pdf"
-        >
-          my résumé
-        </a>
-        , and my socials.
-      </p>
-
-      {/* <p>TODO blog posts</p> */}
-
-      <p>
         If you&apos;re a web geek like me, there are details about how this site
-        was made on{" "}
-        <Link reloadDocument to="/about">
-          the about page
-        </Link>
-        .
+        was made on <a href="/about">the about page</a>.
       </p>
+
+      <h2>recent posts</h2>
+
+      <div className="flex flex-col">
+        <div>
+          <span className="my-0">2024-12-17: </span>
+          <a href="/posts/how-to-make-a-static-blog-with-remix-and-mdx">
+            how to make a static blog with Remix and MDX
+          </a>
+        </div>
+      </div>
 
       {/* <ul>
         {POSTS.map(({ title, slug }) => (

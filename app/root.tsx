@@ -1,5 +1,4 @@
 import {
-  Link,
   Links,
   Meta,
   Outlet,
@@ -76,9 +75,9 @@ export default function App() {
           </div>
 
           <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
-            <Link reloadDocument to="/" className="no-underline text-primary">
+            <a href="/" className="no-underline text-primary">
               ben&apos;z house
-            </Link>
+            </a>
           </h1>
 
           <p className="text-center leading-none">
@@ -89,9 +88,7 @@ export default function App() {
 
           <div className="flex flex-row">
             <pre className="my-0">{"~> "}</pre>
-            <Link reloadDocument to="/projects">
-              projects
-            </Link>
+            <a href="/projects">projects</a>
           </div>
 
           <div className="flex flex-row">
@@ -139,13 +136,9 @@ export default function App() {
           >
             <div className="grow flex flex-row items-center justify-between">
               <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3 relative top-1">
-                <Link
-                  reloadDocument
-                  to="/"
-                  className="no-underline text-primary"
-                >
+                <a href="/" className="no-underline text-primary">
                   ben&apos;z house
-                </Link>
+                </a>
               </h1>
 
               <button
@@ -186,9 +179,7 @@ export default function App() {
 
               <div className="flex flex-row">
                 {/* <pre className="mb-0">{"~> "}</pre> */}
-                <Link reloadDocument to="/projects">
-                  projects
-                </Link>
+                <a href="/projects">projects</a>
               </div>
 
               <div className="flex flex-row relative">

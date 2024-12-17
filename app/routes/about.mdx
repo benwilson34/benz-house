@@ -18,66 +18,9 @@ import { dateLocaleStringOptions } from "../../util/format";
 
 ---
 
-This is a static site powered by [Remix](https://remix.run/), [Tailwind](https://tailwindcss.com/), and [MDX](https://mdxjs.com/). It's hosted on [GitHub Pages](https://pages.github.com/) and uses [GitHub Actions](https://github.com/features/actions) to automatically deploy the site when I push up changes.
+This is a static site powered by [Remix](https://remix.run/), [Tailwind](https://tailwindcss.com/), and [MDX](https://mdxjs.com/). The [source code](https://github.com/benwilson34/benz-house) is publically available; feel free to use the project as a starting point for your own site.
 
-I learned Remix and made this site in a week! The first iteration, anyway. The [source code](https://github.com/benwilson34/benz-house) is publically available, feel free to use the project as a starting point for your own site.
-
-## static site generation
-
-I wanted to try out [Remix](https://remix.run/) for this project. Remix is great for server-side rendering (aka SSR), but this site is totally static, so it's not _really_ needed. I wanted to generate all the pages at build time (static site generation aka SSG) so I can host the site for free forever using a static host like GitHub Pages.
-
-(note: there are platforms out there that offer free Remix hosting, but I had my heart set on building to a static site.)
-
-I found an excellent script written by Habib Hinn (detailed in [this blog post](https://habibhinn.com/blog/how-to-generate-a-static-site-using-remix-run-framework)) to generate the pages, inspired by a post and [demo project](https://github.com/mjackson/remix-ssg-example) by Michael Jackson, one of the co-founders of Remix. At a high level, here's how it works:
-
-1. Build and run the Remix server locally.
-1. For each of the defined routes, make a HTTP GET request to the local server to download the page as plain HTML & JS.
-1. Save the downloaded pages in the client build directory with the other static assets, nested in directories as needed to match the route. The client build directory can then be statically deployed & hosted.
-
-I updated the `build` command in `package.json` so that building the whole site is as easy as running `npm run build`. The resulting `./build/client` directory is ready to deploy. But first I need some content... 🤔
-
-## page content
-
-I decided to write my page content with [MDX](https://mdxjs.com/) which is effectively Markdown plus React. I like Markdown because it's easy to write — it's got decently expressive formatting options with a minimal syntax. With MDX, in addition to the standard Markdown features, I can also inject React JSX or HTML when I need something more custom or fancy on a page. This very page you're reading was written as [an MDX file](https://github.com/benwilson34/benz-house/blob/main/app/routes/about.mdx).
-
-I added the MDX Rollup plugin and configured it by following [these instructions in the Remix docs](https://remix.run/docs/en/main/guides/vite#add-mdx-plugin). I also had to define some [styles](https://github.com/benwilson34/benz-house/blob/0c20aa282b43bb17611eb66ba81a6d7d420fc67a/app/tailwind.css) for the HTML emitted by the MDX plugin since Tailwind overrides the defaults for those elements.
-
-Thanks to the flexibility of Remix, I could also write JSX/TSX instead of MDX on a specific page just by changing the file extension. For example:
-
-```txt
-app/
-└── routes/
-    ├── my-first-post.mdx
-    ├── my-second-post.jsx
-    └── my-third-post.tsx
-```
-
-As Michael notes in his demo project, all links need to do a full page reload since there's no server running to handle client-side page transitions. He mentions using `<Link reloadDocument>` but I just use `<a>` since I don't need to leverage the client-side router at all.
-
-## static hosting and automated deployments
-
-I've used [GitHub Pages](https://pages.github.com/) a bunch of times for super easy static hosting so I'm using it again here. I already had a public repo on GitHub for this project, so I went into the settings and configured my project to deploy from the root of the `gh-pages` branch. I built the static site locally, pushed it onto this branch, and voilà! My site was live 🙌
-
-This works as-is, but I don't want to have to remember to manually build and deploy the site every time I update a post or something. Thanks to [GitHub Actions](https://github.com/features/actions), I can define a simple script (aka a CI/CD pipeline) to automatically build and deploy the site when I push up commits on the `main` branch. I added a [workflow](https://github.com/benwilson34/benz-house/blob/main/.github/workflows/main.yml) based on the one detailed in [this article](https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf) by Daniel Jimenez Garcia. It's pretty straightforward:
-
-1. Using an Ubuntu instance, install Node 20 and project dependencies.
-1. Statically build the site (using the `npm run build` command configured before).
-1. Initialize a Git repo in the build directory and force-push those files onto the `gh-pages` branch.
-
-Note that because the `gh-pages` branch is getting a brand-new repo force-pushed onto it on every deploy, the branch is getting completely overwritten every time. I'm ok with that because I don't care about preserving the history of this branch. Thus I won't make any changes to this branch manually; if I want to make a change to the deployed site, it has to be in the project files, the build process, or the host config.
-
-Finally, I bought my custom domain and configured it for my site by following [the GitHub docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site). I also enforced HTTPS and [verified my domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages) for additional security.
-
-Also, importantly, there are two files that need to exist in the root of the deploy source (`gh-pages` branch): `CNAME` and `.nojekyll`.
-
-1. When you first configure the custom domain, GitHub creates a `CNAME` file in the root of the deploy source which is used for routing.
-1. GitHub Pages assumes by default that your site needs to be built with Jekyll, which in my opinion is a silly assumption, but it is what it is. I ran into [an issue related to this](https://github.com/orgs/community/discussions/23166) and needed to add an empty `.nojekyll` file to the root of the deploy source to prevent Jekyll from getting involved.
-
-I added both of these files to the `public` directory in my project — that way, when the deploy action is triggered and it overwrites the contents of the `gh-pages` branch, the files are always copied into the deploy source.
-
-## conclusion
-
-That's how I set it up! I have more ideas for blog posts and articles in the works. Check back in once in a while to see what I've been up to. Peace ✌
+If you'd like to learn more about how this site was made, I've written an article about it: [how to make a static blog with Remix and MDX](/posts/how-to-make-a-static-blog-with-remix-and-mdx)
 
 ---
 
