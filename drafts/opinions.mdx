@@ -10,7 +10,7 @@ import { dateLocaleStringOptions } from "../../util/format";
 
 <em className="text-center text-xs">
   {/* prettier-ignore */}
-  published on {new Date(frontmatter.meta.datePublished).toLocaleString(
+  published {new Date(frontmatter.meta.datePublished).toLocaleString(
     undefined,
     dateLocaleStringOptions
   )}
