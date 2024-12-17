@@ -73,7 +73,7 @@ body {
   h4,
   h5,
   h6 {
-    @apply font-bold mt-8 mb-2 font-serif;
+    @apply font-bold mt-12 mb-4 font-serif;
   }
 
   h1 {
@@ -101,7 +101,7 @@ body {
   }
 
   p {
-    @apply mb-2;
+    @apply mb-4 leading-tight;
   }
 
   a {
@@ -122,7 +122,7 @@ body {
 
   /* code block */
   pre {
-    @apply mb-4;
+    @apply my-8;
   }
 
   hr {
@@ -131,7 +131,7 @@ body {
 
   ul,
   ol {
-    @apply list-inside my-4;
+    @apply list-outside my-4 ml-8 leading-tight;
   }
 
   ul {
@@ -140,6 +140,11 @@ body {
 
   ol {
     @apply list-decimal;
+  }
+
+  ul > li,
+  ol > li {
+    @apply mb-2;
   }
 
   .ascii-art {

@@ -71,7 +71,7 @@ export default function App() {
       >
         <div className="h-fit grow-0 border-primary border rounded-xl p-2 -rotate-2">
           <div className="w-full flex flex-row justify-center">
-            <pre className="ascii-art">{asciiArtLogoString}</pre>
+            <pre className="ascii-art mt-0 mb-4">{asciiArtLogoString}</pre>
           </div>
 
           <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
@@ -87,14 +87,14 @@ export default function App() {
           </p>
 
           <div className="flex flex-row">
-            <pre className="mb-0">{"~> "}</pre>
+            <pre className="my-0">{"~> "}</pre>
             <Link reloadDocument to="/projects">
               projects
             </Link>
           </div>
 
           <div className="flex flex-row">
-            <pre className="mb-0">{"~> "}</pre>
+            <pre className="my-0">{"~> "}</pre>
             <a
               href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
               download="WilsonBenjamin_Resume_2024-10-21.pdf"
@@ -107,7 +107,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-row">
-            <pre className="mb-0">{"~> "}</pre>
+            <pre className="my-0">{"~> "}</pre>
             <a
               href="https://www.linkedin.com/in/benwilson34/"
               target="_blank"
@@ -118,7 +118,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-row">
-            <pre className="mb-0">{"~> "}</pre>
+            <pre className="my-0">{"~> "}</pre>
             <a
               href="https://github.com/benwilson34"
               target="_blank"
