@@ -138,7 +138,7 @@ export default function App() {
             className="w-full md:hidden flex flex-col px-4 h-14 bg-background z-50 fixed"
           >
             <div className="grow flex flex-row items-center justify-between">
-              <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3">
+              <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3 relative top-1">
                 <Link
                   reloadDocument
                   to="/"
