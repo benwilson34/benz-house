@@ -9,6 +9,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import "./highlight-js-monokai-sublime.css";
 import asciiArtLogoString from "./ascii-art-logo.txt?raw";
 import React from "react";
 import { useBreakpoint } from "./hooks/useBreakpoint";
