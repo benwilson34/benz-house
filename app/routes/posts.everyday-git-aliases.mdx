@@ -122,7 +122,7 @@ unadd = reset HEAD
 1. `git s` - the humble status, by far my most used command, now only 5 keystrokes!
 1. `git discard somefile.txt` - discard (uncommitted) changes made to `somefile.txt`. Use with caution!
 1. `git discardall` - discard all uncommitted changes. Use with caution!
-1. `git forget someignoredfile.txt` - make git stop tracking `someignoredfile.txt` (most likely after it's been added to `.gitignore`).
+1. `git forget someignoredfile.txt` - make Git stop tracking `someignoredfile.txt` (most likely after it's been added to `.gitignore`).
 1. `git aa` - add changes from all files, including new files.
 1. `git unadd somefile.txt` - as it sounds, reverse of `git add`. Moves the changes to `somefile.txt` out of index/staging.
 
@@ -173,7 +173,7 @@ stat = diff --stat
 ```
 
 1. `git graph` - view a condensed and rather pretty graph of the commits/branches in the repo.
-1. `git showme somebranch` - view the hash & message of the commit. In this case, it's the head (most recent commit) of the branch "somebranch". You can customize the format however you want by following the git pretty formats doc.
+1. `git showme somebranch` - view the hash & message of the commit. In this case, it's the head (most recent commit) of the branch `somebranch`. You can customize the format however you want by following the [Git pretty formats doc](https://git-scm.com/docs/pretty-formats).
 1. `git d` - view the current changes, ignoring whitespace changes. To compare two commits, use `git d <commit1> <commit2>`, like `git d HEAD~3 HEAD~2`.
 1. `git dw` - more detailed diff; show changes to individual characters instead of whole lines.
 1. `git stat` - show current changes as a small graph. Can also be used with two commits like `git d`.
