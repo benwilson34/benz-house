@@ -221,8 +221,8 @@ export default function App() {
         </>
       )}
 
-      <div className="grow flex justify-center mt-14 md:mt-0 overflow-auto styled-scrollbars">
-        <div className="flex flex-col justify-between">
+      <div className="grow flex justify-center mt-14 md:mt-0 overflow-y-auto styled-scrollbars">
+        <div className="flex flex-col justify-between overflow-x-hidden">
           <div className="mdx-content px-4 pt-2 max-w-2xl">
             {!isMobileLayout && (
               <div className="border-t border-raised mt-8"></div>
