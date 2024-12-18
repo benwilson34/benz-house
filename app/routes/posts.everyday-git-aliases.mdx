@@ -1,0 +1,201 @@
+---
+meta:
+  title: everyday Git aliases to speed up your workflow
+  datePublished: 2021-04-05T00:00:00.000-05:00
+  dateUpdated: 2024-12-18T00:00:00.000-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+
+# {frontmatter.meta.title}
+
+<ArticleHeader
+  datePublished={frontmatter.meta.datePublished}
+  dateUpdated={frontmatter.meta.dateUpdated}
+/>
+
+---
+
+I originally [posted this article on LinkedIn](https://www.linkedin.com/pulse/everyday-git-aliases-speed-up-your-workflow-benjamin-wilson/) in April 2021. As of this writing (December 2024) I still use these aliases every time I use Git, which is pretty much every work day!
+
+I've updated the aliases to reflect the ones I use currently. I also added a bonus tip at the bottom, give it a look 😎
+
+---
+
+Git. I use it everyday, and yet, for the longest time I accepted that I would have to type out `git status` 25 times a day. I was also writing down translations of some of the more ambiguous commands into what I actually wanted to do (looking at you, `git reset`!), then typing them back in as needed. It worked, but it wasn't ideal.
+
+Turns out, Git aliases serve both of these needs! If you don't know what an alias is, it's basically a different name for a command, with or without options. You can have as many or as few of these aliases as you like, and you can change the alias name and command to your liking. In this way, they are flexible enough to be set up both as shortcuts and as reference for more intuitive operations.
+
+Check out my Git aliases and explanations below, give them a try, and let me know if they improve your workflow!
+
+## installation
+
+Installing one or more of these aliases globally is easy:
+
+1. Run `git config --global -e` to edit your global `.gitconfig`.
+1. If there isn't already an `[alias]` section, add one.
+1. Copy and paste the aliases you want to use under `[alias]`, indented once.
+
+Thus your `.gitconfig` might look like this:
+
+```ini
+[alias]
+    s = status
+    aa = add -A
+    unadd = reset HEAD
+    # etc...
+```
+
+To uninstall an alias, simply remove that line from the config.
+
+## the short list
+
+View [the short list gist](https://gist.github.com/benwilson34/58736ab2b55f7b69f68a0d71d388c072) for installation instructions.
+
+If you don't want to use all the aliases, these alone will save a ton of typing:
+
+```ini
+s = status
+aa = add -A
+unadd = reset HEAD
+c = commit
+cm = commit -m
+caam = !git add -A && git commit -m
+ch = checkout
+cb = checkout -b
+main = !git checkout main && git pull
+m = merge
+mm = merge --no-edit
+```
+
+## the full list
+
+View [the full list gist](https://gist.github.com/benwilson34/0a7c031250f0cb21c938402291d32203) for installation instructions.
+
+Looks like a lot, but don't worry, there are usage examples and explanations below!
+
+```ini
+s = status
+discard = checkout --
+discardall = reset --hard HEAD
+forget = rm --cached
+aa = add -A
+unadd = reset HEAD
+c = commit
+cm = commit -m
+cam = commit -am
+caam = !git add -A && git commit -m
+amend = commit --amend --no-edit
+ch = checkout
+cb = checkout -b
+main = !git checkout main && git pull
+m = merge
+mm = merge --no-edit
+pulldownbranch = !git fetch origin $1:$1 #
+uncommit = reset --soft HEAD~
+graph = log --graph --decorate --oneline --simplify-by-decoration
+showme = show -s --format='%h %s'
+d = diff -b
+dw = diff --word-diff-regex=.
+stat = diff --stat
+aliaslist = !git config --global -l | grep alias
+deleteorig = !find . -name '*.orig' -delete
+dt = difftool --no-prompt
+mt = mergetool --no-prompt
+```
+
+## explanations & usage examples
+
+### adding & discarding changes
+
+```ini
+s = status
+discard = checkout --
+discardall = reset --hard HEAD
+forget = rm --cached
+aa = add -A
+unadd = reset HEAD
+```
+
+1. `git s` - the humble status, by far my most used command, now only 5 keystrokes!
+1. `git discard somefile.txt` - discard (uncommitted) changes made to `somefile.txt`. Use with caution!
+1. `git discardall` - discard all uncommitted changes. Use with caution!
+1. `git forget someignoredfile.txt` - make git stop tracking `someignoredfile.txt` (most likely after it's been added to `.gitignore`).
+1. `git aa` - add changes from all files, including new files.
+1. `git unadd somefile.txt` - as it sounds, reverse of `git add`. Moves the changes to `somefile.txt` out of index/staging.
+
+### committing
+
+```ini
+c = commit
+cm = commit -m
+cam = commit -am
+caam = !git add -A && git commit -m
+amend = commit --amend --no-edit
+uncommit = reset --soft HEAD~
+```
+
+1. `git c` - commit staged changes.
+1. `git cm "make some change"` - commit with inline message.
+1. `git cam "make some change"` - commit all files (excluding new files) with inline message.
+1. `git caam "make some change"` - commit all files (including new files) with inline message.
+1. `git amend` - amend staged changes to previous commit, e.g. `git aa && git amend`.
+1. `git uncommit` - as it sounds, the reverse of `git commit`. Remove the previous commit and put the changes back in the working copy.
+
+### branching
+
+```ini
+ch = checkout
+cb = checkout -b
+main = !git checkout main && git pull
+m = merge
+mm = merge --no-edit
+pulldownbranch = !git fetch origin $1:$1 #
+```
+
+1. `git ch somebranch` - checkout `somebranch`.
+1. `git cb somenewbranch` - create new branch called `somenewbranch` and checkout.
+1. `git main` - checkout `main` and get most recent changes.
+1. `git m somebranch` - merge `somebranch` into current branch.
+1. `git mm somebranch` - merge `somebranch` into current branch using default message.
+1. `git pulldownbranch somebranch` - fetch a copy of `somebranch` from the remote without checking it out. Useful for doing diffs/merges using the target branch without having to stash or commit current changes.
+
+### viewing commits/changes
+
+```ini
+graph = log --graph --decorate --oneline --simplify-by-decoration
+showme = show -s --format='%h %s'
+d = diff -b
+dw = diff --word-diff-regex=.
+stat = diff --stat
+```
+
+1. `git graph` - view a condensed and rather pretty graph of the commits/branches in the repo.
+1. `git showme somebranch` - view the hash & message of the commit. In this case, it's the head (most recent commit) of the branch "somebranch". You can customize the format however you want by following the git pretty formats doc.
+1. `git d` - view the current changes, ignoring whitespace changes. To compare two commits, use `git d <commit1> <commit2>`, like `git d HEAD~3 HEAD~2`.
+1. `git dw` - more detailed diff; show changes to individual characters instead of whole lines.
+1. `git stat` - show current changes as a small graph. Can also be used with two commits like `git d`.
+
+### others
+
+```ini
+aliaslist = !git config --global -l | grep alias
+deleteorig = !find . -name '\*.orig' -delete
+dt = difftool --no-prompt
+mt = mergetool --no-prompt
+```
+
+1. `git aliaslist` - display all of your global aliases.
+1. `git deleteorig` - delete all .orig files in the whole local repo, useful after resolving a bunch of merge conflicts.
+1. `git dt` - if there is a diff program specified, open the current diff without prompting. Can also be used with two commits similar to git d.
+1. `git mt` - if there is a merge program specified, open it without prompting. Useful when resolving a bunch of merge conflicts.
+
+## conclusion
+
+Try these aliases out, hope one or all of these save you some time! And of course, you can adjust these or add your own to suit your needs.
+
+### bonus tip
+
+Once you configure Git the way you like, commit the `.gitconfig` file to a repo, and push them up to GitHub or another Git host. Then on any machine you're working on, you can clone the repo to get the exact same configuration. If you make changes on one machine, commit and push those changes, then on your other machines you can simply `git pull` to get the latest!
+
+Maybe I'll write a longer form article about how I set that up on my Windows machine with hard links... 🤔

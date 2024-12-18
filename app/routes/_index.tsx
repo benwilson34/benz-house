@@ -8,16 +8,18 @@ export const meta: MetaFunction = () => {
 };
 
 // TODO more dynamic approach
-// const POSTS = [
-//   {
-//     title: "ASCII art in React.js",
-//     slug: "/posts/ascii-art-in-remix",
-//   },
-//   {
-//     title: "Markdown test",
-//     slug: "/posts/test-post",
-//   },
-// ];
+const POSTS = [
+  {
+    shortDate: "2024-12-18",
+    title: "everyday Git aliases to speed up your workflow",
+    slug: "everyday-git-aliases",
+  },
+  {
+    shortDate: "2024-12-17",
+    title: "how to make a static blog with Remix and MDX",
+    slug: "how-to-make-a-static-blog-with-remix-and-mdx",
+  },
+];
 
 export default function Index() {
   return (
@@ -65,21 +67,13 @@ export default function Index() {
       <h2>recent posts</h2>
 
       <div className="flex flex-col">
-        <div>
-          <span className="my-0">2024-12-17: </span>
-          <a href="/posts/how-to-make-a-static-blog-with-remix-and-mdx">
-            how to make a static blog with Remix and MDX
-          </a>
-        </div>
-      </div>
-
-      {/* <ul>
-        {POSTS.map(({ title, slug }) => (
-          <li key={slug}>
-            <Link to={slug}>{title}</Link>
-          </li>
+        {POSTS.map(({ shortDate, title, slug }) => (
+          <div key={slug}>
+            <span className="my-0">{shortDate}: </span>
+            <a href={`/posts/${slug}`}>{title}</a>
+          </div>
         ))}
-      </ul> */}
+      </div>
     </div>
   );
 }
