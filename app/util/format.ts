@@ -4,3 +4,7 @@ export const dateLocaleStringOptions: Intl.DateTimeFormatOptions = {
   month: "short",
   day: "numeric",
 };
+
+export function formatPageTitle(title: string) {
+  return `${title} | ben'z house`;
+}

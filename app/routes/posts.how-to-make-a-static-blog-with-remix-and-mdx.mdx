@@ -1,19 +1,23 @@
 ---
-meta:
-  title: how to make a static blog with Remix and MDX
-  datePublished: 2024-12-17T00:00:00.000-05:00
+title: how to make a static blog with Remix and MDX
+datePublished: 2024-12-17T00:00:00-05:00
 ---
 
 import ArticleHeader from "../components/ArticleHeader";
+import { formatPageTitle } from "../util/format";
 
-# {frontmatter.meta.title}
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
 
 <ArticleHeader
-  datePublished={frontmatter.meta.datePublished}
-  dateUpdated={frontmatter.meta.dateUpdated}
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
 />
 
 ---
+
+{/* TODO add `pushup` alias. And `stashall`? */}
 
 This is a static site powered by [Remix](https://remix.run/), [Tailwind](https://tailwindcss.com/), and [MDX](https://mdxjs.com/). It's hosted on [GitHub Pages](https://pages.github.com/) and uses [GitHub Actions](https://github.com/features/actions) to automatically deploy the site when I push up changes.
 

@@ -1,20 +1,19 @@
 ---
-meta:
-  title: about this site
-  datePublished: 2024-12-16T00:00:00.000-05:00
+title: about this site
+datePublished: 2024-12-16T00:00:00-05:00
 ---
 
-import { dateLocaleStringOptions } from "../../util/format";
+import ArticleHeader from "../components/ArticleHeader";
+import { formatPageTitle } from "../util/format";
 
-# {frontmatter.meta.title}
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
 
-<em className="text-center text-xs">
-  {/* prettier-ignore */}
-  published {new Date(frontmatter.meta.datePublished).toLocaleString(
-    undefined,
-    dateLocaleStringOptions
-  )}
-</em>
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
 
 ---
 

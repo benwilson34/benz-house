@@ -1,4 +1,4 @@
-import { dateLocaleStringOptions } from "util/format";
+import { dateLocaleStringOptions } from "~/util/format";
 
 export default function ArticleHeader({
   datePublished: datePublishedString,

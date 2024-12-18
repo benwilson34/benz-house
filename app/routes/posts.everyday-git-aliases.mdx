@@ -1,17 +1,19 @@
 ---
-meta:
-  title: everyday Git aliases to speed up your workflow
-  datePublished: 2021-04-05T00:00:00.000-05:00
-  dateUpdated: 2024-12-18T00:00:00.000-05:00
+title: everyday Git aliases to speed up your workflow
+datePublished: 2021-04-05T00:00:00-05:00
+dateUpdated: 2024-12-18T00:00:00-05:00
 ---
 
 import ArticleHeader from "../components/ArticleHeader";
+import { formatPageTitle } from "../util/format";
 
-# {frontmatter.meta.title}
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
 
 <ArticleHeader
-  datePublished={frontmatter.meta.datePublished}
-  dateUpdated={frontmatter.meta.dateUpdated}
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
 />
 
 ---
