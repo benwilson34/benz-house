@@ -231,7 +231,7 @@ export default function App() {
         <div className="flex flex-row justify-center min-h-full mt-14 md:mt-0">
           <div className="flex flex-col justify-between overflow-x-hidden">
             <div className="mdx-content px-4 pt-2 max-w-2xl">
-              <div className="block md:hidden border-t border-raised mt-8"></div>
+              <div className="hidden md:block border-t border-raised mt-8"></div>
 
               <Outlet />
             </div>
