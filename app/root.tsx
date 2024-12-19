@@ -11,7 +11,6 @@ import "./tailwind.css";
 import "./highlight-js-monokai-sublime.css";
 import asciiArtLogoString from "./ascii-art-logo.txt?raw";
 import React from "react";
-import { useBreakpoint } from "./hooks/useBreakpoint";
 
 // TODO remove these fonts?
 export const links: LinksFunction = () => [
@@ -58,16 +57,15 @@ function Footer() {
 }
 
 export default function App() {
-  const { isBelowMd: isMobileLayout } = useBreakpoint("md");
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState<boolean>(false);
   const toggleIsMobileNavOpen = () =>
     setIsMobileNavOpen((isCurrentlyOpen) => !isCurrentlyOpen);
 
-  return (
-    <div className="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider">
+  function renderDesktopNav() {
+    return (
       <div
         id="desktop-nav"
-        className="hidden md:h-full md:flex flex-col justify-center mx-4"
+        className="hidden md:flex md:h-full flex-col justify-center mx-4"
       >
         <div className="h-fit grow-0 border-primary border rounded-xl p-2 -rotate-2">
           <div className="w-full flex flex-row justify-center">
@@ -127,111 +125,119 @@ export default function App() {
           </div>
         </div>
       </div>
+    );
+  }
 
-      {isMobileLayout && (
-        <>
-          <div
-            id="mobile-nav"
-            className="w-full md:hidden flex flex-col px-4 h-14 bg-background z-50 fixed"
-          >
-            <div className="grow flex flex-row items-center justify-between">
-              <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3 relative top-1">
-                <a href="/" className="no-underline text-primary">
-                  ben&apos;z house
-                </a>
-              </h1>
+  function renderMobileNav() {
+    return (
+      <>
+        <div
+          id="mobile-nav"
+          className="w-full flex md:hidden flex-col px-4 h-14 bg-background z-50 fixed"
+        >
+          <div className="grow flex flex-row items-center justify-between">
+            <h1 className="text-nowrap text-left text-2xl mt-0 -rotate-3 relative top-1">
+              <a href="/" className="no-underline text-primary">
+                ben&apos;z house
+              </a>
+            </h1>
 
-              <button
-                className={`nav-icon ${
-                  isMobileNavOpen ? "nav-icon--open" : ""
-                }`}
-                onClick={toggleIsMobileNavOpen}
+            <button
+              className={`nav-icon ${isMobileNavOpen ? "nav-icon--open" : ""}`}
+              onClick={toggleIsMobileNavOpen}
+            >
+              <span></span>
+            </button>
+          </div>
+
+          <div className="border-b border-raised"></div>
+        </div>
+
+        {/* TODO maybe there's a way to not duplicate this */}
+        <div
+          className={`nav-menu w-full flex md:hidden flex-row justify-center pt-14 z-40 bg-background animate ${
+            isMobileNavOpen ? "open" : ""
+          }`}
+        >
+          <div className="w-fit h-fit flex flex-col items-center rounded-xl p-2 text-3xl gap-6">
+            <div className="w-full flex flex-row justify-center">
+              <pre className="ascii-art">{asciiArtLogoString}</pre>
+            </div>
+
+            {/* <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
+        <Link reloadDocument to="/" className="no-underline">
+          ben&apos;z house
+        </Link>
+      </h1>
+
+      <p className="text-center leading-none">
+        full-stack web dev
+        <br />
+        and more
+      </p> */}
+
+            <div className="flex flex-row">
+              {/* <pre className="mb-0">{"~> "}</pre> */}
+              <a href="/projects">projects</a>
+            </div>
+
+            <div className="flex flex-row relative">
+              {/* <pre className="mb-0">{"~> "}</pre> */}
+              <a
+                href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
+                download="WilsonBenjamin_Resume_2024-10-21.pdf"
               >
-                <span></span>
-              </button>
+                résumé
+              </a>
+              <span className="absolute left-full -top-2 bg-primary h-fit ml-2 px-2 py-2 text-xl text-background rounded-lg font-semibold -rotate-6 leading-none">
+                hire me!!
+              </span>
             </div>
 
-            <div className="border-b border-raised"></div>
-          </div>
+            <div className="flex flex-row">
+              {/* <pre className="mb-0">{"~> "}</pre> */}
+              <a
+                href="https://www.linkedin.com/in/benwilson34/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                linkedin
+              </a>
+            </div>
 
-          {/* TODO maybe there's a way to not duplicate this */}
-          <div
-            className={`nav-menu w-full flex flex-row justify-center pt-14 z-40 bg-background animate ${
-              isMobileNavOpen ? "open" : ""
-            }`}
-          >
-            <div className="w-fit h-fit flex flex-col items-center rounded-xl p-2 text-3xl gap-6">
-              <div className="w-full flex flex-row justify-center">
-                <pre className="ascii-art">{asciiArtLogoString}</pre>
-              </div>
-
-              {/* <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
-            <Link reloadDocument to="/" className="no-underline">
-              ben&apos;z house
-            </Link>
-          </h1>
-
-          <p className="text-center leading-none">
-            full-stack web dev
-            <br />
-            and more
-          </p> */}
-
-              <div className="flex flex-row">
-                {/* <pre className="mb-0">{"~> "}</pre> */}
-                <a href="/projects">projects</a>
-              </div>
-
-              <div className="flex flex-row relative">
-                {/* <pre className="mb-0">{"~> "}</pre> */}
-                <a
-                  href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-                  download="WilsonBenjamin_Resume_2024-10-21.pdf"
-                >
-                  résumé
-                </a>
-                <span className="absolute left-full -top-2 bg-primary h-fit ml-2 px-2 py-2 text-xl text-background rounded-lg font-semibold -rotate-6 leading-none">
-                  hire me!!
-                </span>
-              </div>
-
-              <div className="flex flex-row">
-                {/* <pre className="mb-0">{"~> "}</pre> */}
-                <a
-                  href="https://www.linkedin.com/in/benwilson34/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  linkedin
-                </a>
-              </div>
-
-              <div className="flex flex-row">
-                {/* <pre className="mb-0">{"~> "}</pre> */}
-                <a
-                  href="https://github.com/benwilson34"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  github
-                </a>
-              </div>
+            <div className="flex flex-row">
+              {/* <pre className="mb-0">{"~> "}</pre> */}
+              <a
+                href="https://github.com/benwilson34"
+                target="_blank"
+                rel="noreferrer"
+              >
+                github
+              </a>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </>
+    );
+  }
 
-      <div className="grow flex justify-center mt-14 md:mt-0 overflow-y-auto styled-scrollbars">
-        <div className="flex flex-col justify-between overflow-x-hidden">
-          <div className="mdx-content px-4 pt-2 max-w-2xl">
-            {!isMobileLayout && (
-              <div className="border-t border-raised mt-8"></div>
-            )}
+  return (
+    <div className="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider">
+      {renderDesktopNav()}
 
-            <Outlet />
+      {renderMobileNav()}
+
+      <div className="grow overflow-y-auto styled-scrollbars">
+        <div className="flex flex-row justify-center min-h-full mt-14 md:mt-0">
+          <div className="flex flex-col justify-between overflow-x-hidden">
+            <div className="mdx-content px-4 pt-2 max-w-2xl">
+              <div className="block md:hidden border-t border-raised mt-8"></div>
+
+              <Outlet />
+            </div>
+
+            <Footer />
           </div>
-
-          <Footer />
         </div>
       </div>
     </div>
