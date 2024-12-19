@@ -72,10 +72,8 @@ export default function App() {
             <pre className="ascii-art mt-0 mb-4">{asciiArtLogoString}</pre>
           </div>
 
-          <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">
-            <a href="/" className="no-underline text-primary">
-              ben&apos;z house
-            </a>
+          <h1 className="heading-link text-nowrap text-4xl mt-4 mb-1 mx-1">
+            <a href="/">ben&apos;z house</a>
           </h1>
 
           <p className="text-center leading-none">

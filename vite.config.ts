@@ -9,6 +9,8 @@ import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import rehypeHighlight from "rehype-highlight";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 declare module "@remix-run/node" {
   interface Future {
@@ -20,7 +22,27 @@ export default defineConfig({
   plugins: [
     mdx({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-      rehypePlugins: [rehypeHighlight],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+            headingProperties: { class: "heading-link" },
+            // if I decide to add link icons:
+            //   1. `npm install hastscript @fortawesome/fontawesome-free`
+            //   2. In `tailwind.css` import CSS:
+            //      @import "@fortawesome/fontawesome-free/css/all.css";
+            //   3. Update `heading-link` styles (or add a new class)
+            //   4. Change `behavior` (above) to one of the other ones, like "append"
+            //   5. Uncomment below:
+            // content: function () {
+            //   return h("i.fa-solid.fa-link.heading-link ");
+            // },
+          },
+        ],
+        rehypeHighlight,
+      ],
     }),
     remix({
       future: {

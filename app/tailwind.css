@@ -257,4 +257,8 @@ body {
     color: #fec31d;
     font-size: 2rem;
   } */
+
+  .heading-link a {
+    @apply text-primary hover:text-secondary no-underline;
+  }
 }

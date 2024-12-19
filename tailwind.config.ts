@@ -29,4 +29,7 @@ export default {
     },
   },
   plugins: [],
+  // The list of class names/patterns that should be exempt from tree-shaking, like those
+  //   dynamically added by rehype plugins (see ./vite.config.ts)
+  safelist: ["heading-link"],
 } satisfies Config;
