@@ -10,6 +10,11 @@ export const meta: MetaFunction = () => {
 // TODO more dynamic approach
 const POSTS = [
   {
+    shortDate: "2024-12-19",
+    title: "how to prevent Windows 10 from restarting without consent",
+    slug: "prevent-win-10-from-restarting",
+  },
+  {
     shortDate: "2024-12-18",
     title: "everyday Git aliases to speed up your workflow",
     slug: "everyday-git-aliases",

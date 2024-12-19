@@ -1,0 +1,80 @@
+---
+title: how to prevent Windows 10 from restarting without consent
+datePublished: 2024-04-30T00:00:00-05:00
+dateUpdated: 2024-12-19T00:00:00-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+import { formatPageTitle } from "../util/format";
+
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
+
+---
+
+Windows 10 has the regrettable default behavior of automatically restarting after it automatically installs security updates, meaning that my computer is liable to restart itself whenever the f\*\*\* it feels like. That sucks. The most charitable view I can take on it is that Microsoft wanted to err on the side of security. The thing is, I'm _always_ in the middle of things when I'm getting up from my computer and it drives me nuts to come back and find that it restarted overnight or while I was out on a walk.
+
+Let's stop the madness. This guide will prevent Windows from restarting both while the computer is active and while sleeping.
+
+It's possible that only one or some of these steps are needed, but by this point I don't care enough to be precise. Shotgun time.
+
+Warning: This guide involves getting into some of the dark depths of Windows. Read the whole guide before you do anything and be careful to follow the directions exactly. I've done my best to be thorough but I'm not responsible if something goes wrong. Blame Microsoft for not making it easier to disable this behavior!
+
+For reference, I'm using Windows 10 Pro, version 22H2 (up to date as of this writing — Dec 18, 2024).
+
+## step 1: edit registry
+
+1. Press **Win+R** and type in **regedit**. Press **Enter**.
+1. In the nav panel on the left, go to:
+   1. **HKEY_LOCAL_MACHINE**
+   1. **\SOFTWARE**
+   1. **\Policies**
+   1. **\Microsoft**
+   1. **\Windows**
+   1. **\WindowsUpdate**
+   1. **\AU**
+1. If you don't see it, you may have to create **\WindowsUpdate\AU**
+1. Right-click anywhere in the white space and choose **“New → DWORD (32-bit) Value”**. Give it the name **“NoAutoRebootWithLoggedOnUsers”** and the value of `0x00000001` or just `1`.
+
+## step 2: edit group policies
+
+This step might only be relevant for Windows 10 Pro installations (not Windows 10 Home). You can check by pressing **Win+X** then **Y**, then look under **“Windows specifications → Edition”**.
+
+1. Press **Win+R** and type in **gpedit.msc**. Press **Enter**.
+1. In the nav panel on the left, go to **Computer Configuration → Administrative Template → Windows Components → Windows Update**.
+1. Double-click on **“Configure Automatic Updates”** and click **Enabled** (on the left side). Click **OK**.
+   1. You can configure the specific behavior you want in the dropdown under **“Options: Configure automatic updating”**. Read the “Help” panel on the right for details. I have mine set to **“2 - Notify for download and auto install”**.
+1. Double-click on **“No auto-restart with logged on users for scheduled automatic updates installations”** and click **Enabled** (on the left side). Click **OK**.
+1. Double-click on **“Allow Automatic Updates immediate installation”** and click **Disabled** (on the left side). Click **OK**.
+1. This step might not be needed but I do it just to be sure. Double-click on **“Enabling Windows Update Power Management to automatically wake up the system to install scheduled updates”** and click **Disabled** (on the left side). Click **OK**.
+
+## step 3: edit task schedules
+
+This step might only be relevant for Windows 10 Pro installations (not Windows 10 Home). You can check by pressing **Win+X** then **Y**, then look under **“Windows specifications → Edition”**.
+
+1. Open the Start Menu (or press the Windows key) then type **“Task Scheduler”**. Press **Enter**.
+1. In the nav panel on the left, go to **Task Scheduler (Local) → Task Scheduler Library → Microsoft → Windows → UpdateOrchestrator**.
+1. Right-click on any tasks with names that start with **“Reboot”** and click **Disable**.
+   1. On my system there are two tasks, **“Reboot_AC”** and **“Reboot_Battery”**, but on yours it might just be **“Reboot”**.
+
+## step 4: restart
+
+Restart your computer to make the changes take effect. You might as well install updates now to make Windows shut up about it.
+
+## from now on
+
+From now on you will have to manually click the button to download and install Windows updates. Windows will put an icon in your system tray, notifications, all sorts of stuff to try to get you to update. Do it on your own time. **But remember: once you click “Install updates”, Windows can restart your computer at any time.** The key to avoiding unexpected restarts is to only install updates when you're prepared to shut down or restart.
+
+To update: open the Start Menu (or press the Windows key), type **“Windows Update”**, and press **Enter**. Click the **“Install”** button and wait.
+
+## references
+
+- https://www.thewindowsclub.com/windows-updates-restart-disable
+- https://justpaste.it/HowDisableWindows10Update
+- https://superuser.com/questions/957267/how-to-disable-automatic-reboots-in-windows-10/
