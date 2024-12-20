@@ -11,12 +11,15 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import rehypeHighlight from "rehype-highlight";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
+import { parseBoolean } from "./parse-boolean";
 
 declare module "@remix-run/node" {
   interface Future {
     v3_singleFetch: true;
   }
 }
+
+const isDev = parseBoolean(process.env.IS_DEV || "") ?? false;
 
 export default defineConfig({
   plugins: [
@@ -45,6 +48,8 @@ export default defineConfig({
       ],
     }),
     remix({
+      // only serve `drafts.*` pages in dev
+      ...(!isDev && { ignoredRouteFiles: ["**/drafts.*"] }),
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
