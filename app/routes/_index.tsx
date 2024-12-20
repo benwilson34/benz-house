@@ -24,6 +24,26 @@ const POSTS = [
     title: "how to make a static blog with Remix and MDX",
     slug: "how-to-make-a-static-blog-with-remix-and-mdx",
   },
+  {
+    shortDate: "2023-01-04",
+    title: "my favorite albums of 2022",
+    slug: "favorite-albums-of-2022",
+  },
+  {
+    shortDate: "2021-12-31",
+    title: "my favorite albums of 2021",
+    slug: "favorite-albums-of-2021",
+  },
+  {
+    shortDate: "2020-12-31",
+    title: "my favorite albums of 2020",
+    slug: "favorite-albums-of-2020",
+  },
+  {
+    shortDate: "2019-12-28",
+    title: "my 100 favorite albums of the 2010s",
+    slug: "favorite-albums-of-the-2010s",
+  },
 ];
 
 export default function Index() {
