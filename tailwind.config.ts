@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx,md,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -25,6 +25,9 @@ export default {
         ],
         serif: ["Trickster", "serif"],
         // TODO FiraCode for monospace?
+      },
+      screens: {
+        xs: "400px",
       },
     },
   },

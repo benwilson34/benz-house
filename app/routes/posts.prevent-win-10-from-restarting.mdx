@@ -6,6 +6,7 @@ dateUpdated: 2024-12-19T00:00:00-05:00
 
 import ArticleHeader from "../components/ArticleHeader";
 import { formatPageTitle } from "../util/format";
+import Callout from "../components/Callout";
 
 export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
 
@@ -18,13 +19,19 @@ export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
 
 ---
 
+<Callout type="warning">
+  **Warning:** This guide involves getting into some of the dark depths of
+  Windows. Read the whole guide before you do anything and be careful to follow
+  the directions exactly. I've done my best to be thorough but I'm not
+  responsible if something goes wrong. Blame Microsoft for not making it easier
+  to disable this behavior!
+</Callout>
+
 Windows 10 has the regrettable default behavior of automatically restarting after it automatically installs security updates, meaning that my computer is liable to restart itself whenever the f\*\*\* it feels like. That sucks. The most charitable view I can take on it is that Microsoft wanted to err on the side of security. The thing is, I'm _always_ in the middle of things when I'm getting up from my computer and it drives me nuts to come back and find that it restarted overnight or while I was out on a walk.
 
 Let's stop the madness. This guide will prevent Windows from restarting both while the computer is active and while sleeping.
 
 It's possible that only one or some of these steps are needed, but by this point I don't care enough to be precise. Shotgun time.
-
-Warning: This guide involves getting into some of the dark depths of Windows. Read the whole guide before you do anything and be careful to follow the directions exactly. I've done my best to be thorough but I'm not responsible if something goes wrong. Blame Microsoft for not making it easier to disable this behavior!
 
 For reference, I'm using Windows 10 Pro, version 22H2 (up to date as of this writing — Dec 18, 2024).
 

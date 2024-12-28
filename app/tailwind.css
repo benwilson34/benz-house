@@ -261,4 +261,8 @@ body {
   .heading-link a {
     @apply text-primary hover:text-secondary no-underline;
   }
+
+  .callout * {
+    @apply mb-0;
+  }
 }
