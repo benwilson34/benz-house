@@ -1,4 +1,19 @@
 import type { MetaFunction } from "@remix-run/node";
+import { dateLocaleStringOptions } from "~/util/format";
+
+// TODO define frontmatter type somewhere else and import?
+type Frontmatter = {
+  title: string;
+  datePublished: string;
+  dateUpdated?: string;
+};
+
+const posts = import.meta.glob("./posts.*.mdx", { eager: true }) as Record<
+  string,
+  {
+    frontmatter: Frontmatter;
+  }
+>;
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,46 +22,41 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-// TODO more dynamic approach
-const POSTS = [
-  {
-    shortDate: "2024-12-19",
-    title: "how to prevent Windows 10 from restarting without consent",
-    slug: "prevent-win-10-from-restarting",
-  },
-  {
-    shortDate: "2024-12-18",
-    title: "everyday Git aliases to speed up your workflow",
-    slug: "everyday-git-aliases",
-  },
-  {
-    shortDate: "2024-12-17",
-    title: "how to make a static blog with Remix and MDX",
-    slug: "how-to-make-a-static-blog-with-remix-and-mdx",
-  },
-  {
-    shortDate: "2023-01-04",
-    title: "my favorite albums of 2022",
-    slug: "favorite-albums-of-2022",
-  },
-  {
-    shortDate: "2021-12-31",
-    title: "my favorite albums of 2021",
-    slug: "favorite-albums-of-2021",
-  },
-  {
-    shortDate: "2020-12-31",
-    title: "my favorite albums of 2020",
-    slug: "favorite-albums-of-2020",
-  },
-  {
-    shortDate: "2019-12-28",
-    title: "my 100 favorite albums of the 2010s",
-    slug: "favorite-albums-of-the-2010s",
-  },
-];
-
 export default function Index() {
+  function renderRecentPostLinks() {
+    return (
+      <div className="flex flex-col">
+        {Object.entries(posts)
+          .map(([key, value]) => {
+            const mostRelevantDate =
+              value.frontmatter.dateUpdated || value.frontmatter.datePublished;
+            return [key, { ...value, mostRelevantDate }] as const;
+          })
+          .sort(([, valueA], [, valueB]) =>
+            valueA.mostRelevantDate > valueB.mostRelevantDate ? -1 : 1
+          )
+          .map(([key, value]) => {
+            // assert non-null because of the glob pattern in the import
+            // TODO replace `.` with `/`?
+            const slug = key.match(/posts\.(.+)\.mdx/i)![1];
+            const { mostRelevantDate, frontmatter } = value;
+            const { title } = frontmatter;
+            const shortDate = new Date(mostRelevantDate).toLocaleDateString(
+              undefined,
+              dateLocaleStringOptions
+            );
+
+            return (
+              <div key={slug}>
+                <span className="my-0">{shortDate}: </span>
+                <a href={`/posts/${slug}`}>{title}</a>
+              </div>
+            );
+          })}
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="flex flex-row justify-center">
@@ -91,14 +101,7 @@ export default function Index() {
 
       <h2>recent posts</h2>
 
-      <div className="flex flex-col">
-        {POSTS.map(({ shortDate, title, slug }) => (
-          <div key={slug}>
-            <span className="my-0">{shortDate}: </span>
-            <a href={`/posts/${slug}`}>{title}</a>
-          </div>
-        ))}
-      </div>
+      {renderRecentPostLinks()}
     </div>
   );
 }
