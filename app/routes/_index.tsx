@@ -1,12 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Frontmatter } from "~/types/Frontmatter";
 import { dateLocaleStringOptions } from "~/util/format";
-
-// TODO define frontmatter type somewhere else and import?
-type Frontmatter = {
-  title: string;
-  datePublished: string;
-  dateUpdated?: string;
-};
 
 const posts = import.meta.glob("./posts.*.mdx", { eager: true }) as Record<
   string,
@@ -84,9 +78,39 @@ export default function Index() {
       <div className="border-t border-raised mb-10"></div>
 
       <p>
-        Hi, I&apos;m Ben (he/him)! I&apos;m a full-stack web engineer by trade
-        and proud multidisciplinarian. I like video games and music and
-        humanity.
+        Hi, I&apos;m Ben (he/him)! I&apos;m a software engineer specializing in
+        full-stack web development. I have a strong DIY ethic and love to learn
+        things, make things, and collaborate. Besides making software, I like
+        playing drums and guitar, listening to music, playing video games,
+        crocheting, playing tennis, woodworking, baking bread, and reading up on
+        whatever else interests me.
+      </p>
+
+      <p>
+        Some recent interests:
+        <ul>
+          <li>
+            learning to{" "}
+            <a href="https://youtu.be/NdCia_d1u5c?si=fQmYOh84Rwe6phXW">
+              riffle shuffle
+            </a>
+          </li>
+          <li>
+            making{" "}
+            <a href="https://youtu.be/cF-vuTPdOhQ?si=gM7cpWTmZiO73ppL">
+              homemade bagels
+            </a>{" "}
+            (2nd attempt with this recipe, they came out pretty good!)
+          </li>
+          <li>
+            learning{" "}
+            <a href="https://en.wikipedia.org/wiki/Black_Lady">Hearts</a> (and{" "}
+            <a href="https://mark.random-article.com/hearts/index.html">
+              strategies
+            </a>
+            )
+          </li>
+        </ul>
       </p>
 
       <p>

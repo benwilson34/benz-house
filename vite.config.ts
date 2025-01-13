@@ -48,8 +48,8 @@ export default defineConfig({
       ],
     }),
     remix({
-      // only serve `drafts.*` pages in dev
-      ...(!isDev && { ignoredRouteFiles: ["**/drafts.*"] }),
+      // only serve `drafts*` pages in dev
+      ...(!isDev && { ignoredRouteFiles: ["**/drafts*"] }),
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
