@@ -90,8 +90,8 @@ export default function App() {
           <div className="flex flex-row">
             <pre className="my-0">{"~> "}</pre>
             <a
-              href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-              download="WilsonBenjamin_Resume_2024-10-21.pdf"
+              href="../WilsonBenjamin_Resume_2025.1.pdf"
+              download="WilsonBenjamin_Resume_2025.1.pdf"
             >
               résumé
             </a>
@@ -182,8 +182,8 @@ export default function App() {
             <div className="flex flex-row relative">
               {/* <pre className="mb-0">{"~> "}</pre> */}
               <a
-                href="../WilsonBenjamin_Resume_2024-10-21_WebAppFocus.pdf"
-                download="WilsonBenjamin_Resume_2024-10-21.pdf"
+                href="../WilsonBenjamin_Resume_2025.1.pdf"
+                download="WilsonBenjamin_Resume_2025.1.pdf"
               >
                 résumé
               </a>
