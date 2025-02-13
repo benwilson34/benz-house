@@ -1,0 +1,1 @@
+import{M as p,m as e}from"./posts.virtual-beepis-week-07-C53K5XUl.js";import"./jsx-runtime-BMrMXMSG.js";import"./ArticleHeader-CALjWnEo.js";import"./YouTubeEmbed-DiGnTeNs.js";export{p as default,e as meta};
