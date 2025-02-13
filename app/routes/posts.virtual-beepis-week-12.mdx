@@ -1,0 +1,37 @@
+---
+title: "virtual beepis beta week 12: the all-important page turn animation"
+datePublished: 2021-04-21T00:00:00-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+import YouTubeEmbed from "../components/YouTubeEmbed";
+import { formatPageTitle } from "../util/format";
+
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
+
+---
+
+This week we have a rather light build because there was a bunch of work behind the scenes to be done. The most relevant was getting a workaround for Mac users after some users reported the infamous "The application cannot be run" popup again. The steps are in the "Install Instructions" section on the game page, but I'll copy them here for visibility:
+
+Mac install instructions: Uninstall previous version (if applicable). Extract the .zip and double-click "virtualbeepis_mac". You may get an error popup with the message "The application cannot be opened"; try these steps in order:
+
+1. [Follow this vid to allow the app to run](https://youtu.be/i9TtoOJjGpU?si=JoC0FRfiLc5kfv9q). Try to run the app.
+1. Specifically allow the app in System Preferences > Security & Privacy > General > Allow "virtual beepis".
+1. You might also need to right-click the app and choose "Open", then "Open".
+
+The other thing I really dove into this week was making the manual page turn animations look more like paper and less like...well, something more rigid. I tried making the animations in Blender and importing them, but try as I might, I could not get them to completely work. In my searching though, I found a Unity package called [Deform](https://assetstore.unity.com/packages/tools/modeling/deform-148425) which serves this need quite nicely. Still needs some work but check out the new build and the vid preview below!
+
+<YouTubeEmbed src="https://www.youtube.com/embed/waE4YUqiag8?si=r-WUI9izFWLfaMq0" />
+
+Download virtual beepis from [itch.io](https://benjawmino.itch.io/virtual-beepis) or [Steam](https://store.steampowered.com/app/1651860/virtual_beepis/)!
+
+---
+
+This article was first posted on [itch.io](https://benjawmino.itch.io/virtual-beepis/devlog/245136/beta-week-12-the-all-important-page-turn-animation).

@@ -1,0 +1,37 @@
+---
+title: "virtual beepis beta week 7: motion sickness and new buttons"
+datePublished: 2021-03-16T00:00:00-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+import YouTubeEmbed from "../components/YouTubeEmbed";
+import { formatPageTitle } from "../util/format";
+
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
+
+---
+
+We added some new buttons! They have virtual "LCD screens" of their own. The idea is that when the player is switching menus or playing a mini-game, the icons on the buttons will change to match what they do in that context. This makes the initial interactions with the unit more intuitive while not giving everything away. After all, we still want the player to have to figure out what everything does!
+
+![Screenshot of virtual beepis](/img/virtual-beepis-week-07_1.png)
+
+We also finished up a fun little feature we've been discussing for a while: motion sickness! Spinning the unit very fast will make the beepis nauseous and barf.
+
+![Screenshot of virtual beepis](/img/virtual-beepis-week-07_2.png)
+
+Check out the new features in action:
+
+<YouTubeEmbed src="https://www.youtube.com/embed/8htQ7pyv0W8?si=gbMtMtjIuJa94apB" />
+
+Download virtual beepis from [itch.io](https://benjawmino.itch.io/virtual-beepis) or [Steam](https://store.steampowered.com/app/1651860/virtual_beepis/)!
+
+---
+
+This article was first posted on [itch.io](https://benjawmino.itch.io/virtual-beepis/devlog/232561/beta-week-7-motion-sickness-and-new-buttons).

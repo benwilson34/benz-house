@@ -1,0 +1,37 @@
+---
+title: "virtual beepis beta week 9: bugfixes!"
+datePublished: 2021-03-30T00:00:00-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+import YouTubeEmbed from "../components/YouTubeEmbed";
+import { formatPageTitle } from "../util/format";
+
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
+
+---
+
+You may have noticed we did not put out a release or devlog last week. That's because we're working on a ~secret~ new feature 😉 It's still in the works, so keep an eye out in the coming weeks!
+
+In the meantime, we have a new build with some bugfixes:
+
+- The beepis will not get stuck in place after filling the screen with poops.
+- The keyring will correctly go back into its place after dragging.
+- The unit will properly wait for the player to stop dragging before spawning table items.
+
+I almost forgot! The new buttons we added two weeks ago will now change with the context on the unit. By that I mean that the icons on the buttons will change when switching screens to match what they do when you click on them. This will make the initial player interactions more intuitive and clear.
+
+<YouTubeEmbed src="https://www.youtube.com/embed/VJWFlHR8J4o?si=6ullON7EYgZgFAwC" />
+
+Download virtual beepis from [itch.io](https://benjawmino.itch.io/virtual-beepis) or [Steam](https://store.steampowered.com/app/1651860/virtual_beepis/)!
+
+---
+
+This article was first posted on [itch.io](https://benjawmino.itch.io/virtual-beepis/devlog/237330/beta-week-9-bugfixes).
