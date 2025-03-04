@@ -1,0 +1,15 @@
+import{j as e}from"./jsx-runtime-BMrMXMSG.js";import{f as o,A as r}from"./ArticleHeader-CALjWnEo.js";import{Y as s}from"./YouTubeEmbed-DiGnTeNs.js";const n={title:"virtual beepis beta week 12: the all-important page turn animation",datePublished:"2021-04-21T00:00:00-05:00"},l=()=>[{title:o(n.title)}];function a(i){const t={a:"a",h1:"h1",hr:"hr",li:"li",ol:"ol",p:"p",...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h1,{id:"",children:n.title}),`
+`,e.jsx(r,{datePublished:n.datePublished,dateUpdated:n.dateUpdated}),`
+`,e.jsx(t.hr,{}),`
+`,e.jsx(t.p,{children:`This week we have a rather light build because there was a bunch of work behind the scenes to be done. The most relevant was getting a workaround for Mac users after some users reported the infamous "The application cannot be run" popup again. The steps are in the "Install Instructions" section on the game page, but I'll copy them here for visibility:`}),`
+`,e.jsx(t.p,{children:'Mac install instructions: Uninstall previous version (if applicable). Extract the .zip and double-click "virtualbeepis_mac". You may get an error popup with the message "The application cannot be opened"; try these steps in order:'}),`
+`,e.jsxs(t.ol,{children:[`
+`,e.jsxs(t.li,{children:[e.jsx(t.a,{href:"https://youtu.be/i9TtoOJjGpU?si=JoC0FRfiLc5kfv9q",children:"Follow this vid to allow the app to run"}),". Try to run the app."]}),`
+`,e.jsx(t.li,{children:'Specifically allow the app in System Preferences > Security & Privacy > General > Allow "virtual beepis".'}),`
+`,e.jsx(t.li,{children:'You might also need to right-click the app and choose "Open", then "Open".'}),`
+`]}),`
+`,e.jsxs(t.p,{children:["The other thing I really dove into this week was making the manual page turn animations look more like paper and less like...well, something more rigid. I tried making the animations in Blender and importing them, but try as I might, I could not get them to completely work. In my searching though, I found a Unity package called ",e.jsx(t.a,{href:"https://assetstore.unity.com/packages/tools/modeling/deform-148425",children:"Deform"})," which serves this need quite nicely. Still needs some work but check out the new build and the vid preview below!"]}),`
+`,e.jsx(s,{src:"https://www.youtube.com/embed/waE4YUqiag8?si=r-WUI9izFWLfaMq0"}),`
+`,e.jsxs(t.p,{children:["Download virtual beepis from ",e.jsx(t.a,{href:"https://benjawmino.itch.io/virtual-beepis",children:"itch.io"})," or ",e.jsx(t.a,{href:"https://store.steampowered.com/app/1651860/virtual_beepis/",children:"Steam"}),"!"]}),`
+`,e.jsx(t.hr,{}),`
+`,e.jsxs(t.p,{children:["This article was first posted on ",e.jsx(t.a,{href:"https://benjawmino.itch.io/virtual-beepis/devlog/245136/beta-week-12-the-all-important-page-turn-animation",children:"itch.io"}),"."]})]})}function h(i={}){const{wrapper:t}=i.components||{};return t?e.jsx(t,{...i,children:e.jsx(a,{...i})}):a(i)}const u=Object.freeze(Object.defineProperty({__proto__:null,default:h,frontmatter:n,meta:l},Symbol.toStringTag,{value:"Module"}));export{h as M,u as _,l as m};
