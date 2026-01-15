@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>how to make a static blog with Remix and MDX | ben&#x27;z house</title><link rel="stylesheet" href="/assets/root-CDiwbYGJ.css"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"/></head><body><div class="flex flex-col md:flex-row w-full h-screen max-h-screen bg-background text-primary tracking-wider"><div id="desktop-nav" class="hidden md:flex md:h-full flex-col justify-center mx-4"><div class="h-fit grow-0 border-primary border rounded-xl p-2 -rotate-2"><div class="w-full flex flex-row justify-center"><pre class="ascii-art mt-0 mb-4">               
+           ~~  
+          ~  ~ 
+ ~~~     ~     
+    ~          
+ (○) ~     (○) 
+               
+               
+        │      
+               
+      └  ]┘    
+        ─      
+               
+       ¬⌐      
+      /VVV\    
+     /V    \   
+     │     │   
+     \∩∩∩∩∩/   
+        ___    
+               </pre></div><h1 class="heading-link text-nowrap text-4xl mt-4 mb-1 mx-1"><a href="/">ben&#x27;z house</a></h1><p class="text-center leading-none">full-stack web dev<br/>and more</p><div class="flex flex-row"><pre class="my-0">~&gt; </pre><a href="/projects">projects</a></div><div class="flex flex-row"><pre class="my-0">~&gt; </pre><a href="../WilsonBenjamin_Resume_2025.1.pdf" download="WilsonBenjamin_Resume_2025.1.pdf">résumé</a><span class="bg-primary h-fit ml-2 px-2 text-background rounded-lg font-semibold">hire me!!</span></div><div class="flex flex-row"><pre class="my-0">~&gt; </pre><a href="https://www.linkedin.com/in/benwilson34/" target="_blank" rel="noreferrer">linkedin</a></div><div class="flex flex-row"><pre class="my-0">~&gt; </pre><a href="https://github.com/benwilson34" target="_blank" rel="noreferrer">github</a></div></div></div><div id="mobile-nav" class="w-full flex md:hidden flex-col px-4 h-14 bg-background z-50 fixed"><div class="grow flex flex-row items-center justify-between"><h1 class="text-nowrap text-left text-2xl mt-0 -rotate-3 relative top-1"><a href="/" class="no-underline text-primary">ben&#x27;z house</a></h1><button class="nav-icon "><span></span></button></div><div class="border-b border-raised"></div></div><div class="nav-menu w-full flex md:hidden flex-row justify-center pt-14 z-40 bg-background animate "><div class="w-fit h-fit flex flex-col items-center rounded-xl p-2 text-3xl gap-6"><div class="w-full flex flex-row justify-center"><pre class="ascii-art">               
+           ~~  
+          ~  ~ 
+ ~~~     ~     
+    ~          
+ (○) ~     (○) 
+               
+               
+        │      
+               
+      └  ]┘    
+        ─      
+               
+       ¬⌐      
+      /VVV\    
+     /V    \   
+     │     │   
+     \∩∩∩∩∩/   
+        ___    
+               </pre></div><div class="flex flex-row"><a href="/projects">projects</a></div><div class="flex flex-row relative"><a href="../WilsonBenjamin_Resume_2025.1.pdf" download="WilsonBenjamin_Resume_2025.1.pdf">résumé</a><span class="absolute left-full -top-2 bg-primary h-fit ml-2 px-2 py-2 text-xl text-background rounded-lg font-semibold -rotate-6 leading-none">hire me!!</span></div><div class="flex flex-row"><a href="https://www.linkedin.com/in/benwilson34/" target="_blank" rel="noreferrer">linkedin</a></div><div class="flex flex-row"><a href="https://github.com/benwilson34" target="_blank" rel="noreferrer">github</a></div></div></div><div class="grow overflow-y-auto styled-scrollbars"><div class="flex flex-row justify-center min-h-full mt-14 md:mt-0"><div class="flex flex-col justify-between overflow-x-hidden"><div class="mdx-content px-4 pt-2 max-w-2xl"><div class="hidden md:block border-t border-raised mt-8"></div><h1 id="">how to make a static blog with Remix and MDX</h1>
+<div class="flex flex-col w-full items-center text-sm"><em>published<!-- --> <!-- -->Tue, Dec 17, 2024</em></div>
+<hr/>
+<!-- -->
+<p>This is a static site powered by <a href="https://remix.run/">Remix</a>, <a href="https://tailwindcss.com/">Tailwind</a>, and <a href="https://mdxjs.com/">MDX</a>. It&#x27;s hosted on <a href="https://pages.github.com/">GitHub Pages</a> and uses <a href="https://github.com/features/actions">GitHub Actions</a> to automatically deploy the site when I push up changes.</p>
+<p>I learned Remix and made this site in a week! The first iteration, anyway. The <a href="https://github.com/benwilson34/benz-house">source code</a> is publically available; feel free to use the project as a starting point for your own site.</p>
+<h2 id="static-site-generation" class="heading-link"><a href="#static-site-generation">static site generation</a></h2>
+<p>I wanted to try out <a href="https://remix.run/">Remix</a> for this project. Remix is great for server-side rendering (aka SSR), but this site is totally static, so it&#x27;s not <em>really</em> needed. I wanted to generate all the pages at build time (static site generation aka SSG) so I can host the site for free forever using a static host like GitHub Pages.</p>
+<p>(note: there are platforms out there that offer free Remix hosting, but I had my heart set on building to a static site.)</p>
+<p>I found an excellent script written by Habib Hinn (detailed in <a href="https://habibhinn.com/blog/how-to-generate-a-static-site-using-remix-run-framework">this blog post</a>) to generate the pages, inspired by a post and <a href="https://github.com/mjackson/remix-ssg-example">demo project</a> by Michael Jackson, one of the co-founders of Remix. At a high level, here&#x27;s how it works:</p>
+<ol>
+<li>Build and run the Remix server locally.</li>
+<li>For each of the defined routes, make a HTTP GET request to the local server to download the page as plain HTML &amp; JS.</li>
+<li>Save the downloaded pages in the client build directory with the other static assets, nested in directories as needed to match the route. The client build directory can then be statically deployed &amp; hosted.</li>
+</ol>
+<p>I updated the <code>build</code> command in <code>package.json</code> so that building the whole site is as easy as running <code>npm run build</code>. The resulting <code>./build/client</code> directory is ready to deploy. But first I need some content... 🤔</p>
+<h2 id="page-content" class="heading-link"><a href="#page-content">page content</a></h2>
+<p>I decided to write my page content with <a href="https://mdxjs.com/">MDX</a> which is effectively Markdown plus React. I like Markdown because it&#x27;s easy to write — it&#x27;s got decently expressive formatting options with a minimal syntax. With MDX, in addition to the standard Markdown features, I can also inject React JSX or HTML when I need something more custom or fancy on a page. This very page you&#x27;re reading was written as <a href="https://github.com/benwilson34/benz-house/blob/main/app/routes/posts.how-to-make-a-static-blog-with-remix-and-mdx.mdx">an MDX file</a>.</p>
+<p>Thanks to the flexibility of Remix, I could also write JSX/TSX instead of MDX on a specific page if I want just by changing the file extension. For example:</p>
+<pre><code class="hljs language-txt">app/
+└── routes/
+    ├── my-first-post.mdx
+    ├── my-second-post.jsx
+    └── my-third-post.tsx
+</code></pre>
+<p>Anyway, I added the MDX Rollup plugin and configured it by following <a href="https://remix.run/docs/en/main/guides/vite#add-mdx-plugin">these instructions in the Remix docs</a>. I also had to define some <a href="https://github.com/benwilson34/benz-house/blob/0c20aa282b43bb17611eb66ba81a6d7d420fc67a/app/tailwind.css">styles</a> for the HTML elements emitted by the MDX plugin since Tailwind overrides the defaults for those elements.</p>
+<p>As Michael notes in his demo project, all links need to do a full page reload since there&#x27;s no server running to handle client-side page transitions. He mentions using <code>&lt;Link reloadDocument&gt;</code> but I use <code>&lt;a&gt;</code> tags because I don&#x27;t need to leverage the client-side router at all. The MDX plugin already emits <code>&lt;a&gt;</code> tags for links, so I only need to remember this when I&#x27;m writing a JSX or TSX page.</p>
+<h2 id="static-hosting-and-automated-deployments" class="heading-link"><a href="#static-hosting-and-automated-deployments">static hosting and automated deployments</a></h2>
+<p>I&#x27;ve used <a href="https://pages.github.com/">GitHub Pages</a> a bunch of times for super easy static hosting so I&#x27;m using it again here. I already had a public repo on GitHub for this project, so I went into the settings and configured my project to deploy from the root of the <code>gh-pages</code> branch. I built the static site locally, pushed it onto this branch, and voilà! My site was live 🙌</p>
+<p>This works as-is, but I don&#x27;t want to have to remember to manually build and deploy the site every time I update a post or something. Thanks to <a href="https://github.com/features/actions">GitHub Actions</a>, I can define a simple script (aka a CI/CD pipeline) to automatically build and deploy the site when I push up commits on the <code>main</code> branch. I added a <a href="https://github.com/benwilson34/benz-house/blob/main/.github/workflows/main.yml">workflow</a> based on the one detailed in <a href="https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf">this article</a> by Daniel Jimenez Garcia. It&#x27;s pretty straightforward:</p>
+<ol>
+<li>Using an Ubuntu instance, install Node 20 and project dependencies.</li>
+<li>Statically build the site (using the <code>npm run build</code> command configured before).</li>
+<li>Initialize a Git repo in the build directory and force-push those files onto the <code>gh-pages</code> branch.</li>
+</ol>
+<p>Note that because the <code>gh-pages</code> branch is getting a brand-new repo force-pushed onto it on every deploy, the branch is getting completely overwritten every time. I&#x27;m ok with that because I don&#x27;t care about preserving the history of this branch. Thus I won&#x27;t make any changes to this branch manually; if I want to make a change to the deployed site, it has to be in the project files, the build process, or the host config.</p>
+<p>Finally, I bought my custom domain and configured it for my site by following <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">the GitHub docs</a>. I also enforced HTTPS and <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">verified my domain</a> for additional security.</p>
+<p>Also, importantly, there are two files that need to exist in the root of the deploy source (<code>gh-pages</code> branch): <code>CNAME</code> and <code>.nojekyll</code>.</p>
+<ol>
+<li>When you first configure the custom domain, GitHub creates a <code>CNAME</code> file in the root of the deploy source which is used for routing.</li>
+<li>GitHub Pages assumes by default that your site needs to be built with Jekyll, which in my opinion is a silly assumption, but it is what it is. I ran into <a href="https://github.com/orgs/community/discussions/23166">an issue related to this</a> and needed to add an empty <code>.nojekyll</code> file to the root of the deploy source to prevent Jekyll from getting involved.</li>
+</ol>
+<p>I added both of these files to the <code>public</code> directory in my project — that way, when the deploy action is triggered and it overwrites the contents of the <code>gh-pages</code> branch, the files are always copied into the deploy source.</p>
+<h2 id="conclusion" class="heading-link"><a href="#conclusion">conclusion</a></h2>
+<p>That&#x27;s how I set up this site! I&#x27;m happy with how it works so far and I have ideas for improvements, so keep an eye out for more posts. Hope this was useful in some way. Peace ✌</p></div><div class="mt-10 text-center italic text-xs"><div class="border-b border-raised w-full mb-4"></div>No rights reserved <!-- -->2026<div class="mt-4"></div></div></div></div></div></div><script>((STORAGE_KEY, restoreKey) => {
+    if (!window.history.state || !window.history.state.key) {
+      let key = Math.random().toString(32).slice(2);
+      window.history.replaceState({
+        key
+      }, "");
+    }
+    try {
+      let positions = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+      let storedY = positions[restoreKey || window.history.state.key];
+      if (typeof storedY === "number") {
+        window.scrollTo(0, storedY);
+      }
+    } catch (error) {
+      console.error(error);
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  })("positions", null)</script><link rel="modulepreload" href="/assets/entry.client-Cm_jmIF2.js"/><link rel="modulepreload" href="/assets/jsx-runtime-BMrMXMSG.js"/><link rel="modulepreload" href="/assets/components-DOAV3JHW.js"/><link rel="modulepreload" href="/assets/root-ywz3XCDc.js"/><link rel="modulepreload" href="/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-wkkhvEBN.js"/><link rel="modulepreload" href="/assets/ArticleHeader-CALjWnEo.js"/><link rel="modulepreload" href="/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-t6NTteNw.js"/><script>window.__remixContext = {"basename":"/","future":{"v3_fetcherPersist":true,"v3_relativeSplatPath":true,"v3_throwAbortReason":true,"v3_routeConfig":false,"v3_singleFetch":true,"v3_lazyRouteDiscovery":true,"unstable_optimizeDeps":false},"isSpaMode":false};window.__remixContext.stream = new ReadableStream({start(controller){window.__remixContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());</script><script type="module" async="">;
+import * as route0 from "/assets/root-ywz3XCDc.js";
+import * as route1 from "/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-t6NTteNw.js";
+window.__remixManifest = {
+  "entry": {
+    "module": "/assets/entry.client-Cm_jmIF2.js",
+    "imports": [
+      "/assets/jsx-runtime-BMrMXMSG.js",
+      "/assets/components-DOAV3JHW.js"
+    ],
+    "css": []
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/root-ywz3XCDc.js",
+      "imports": [
+        "/assets/jsx-runtime-BMrMXMSG.js",
+        "/assets/components-DOAV3JHW.js"
+      ],
+      "css": [
+        "/assets/root-CDiwbYGJ.css"
+      ]
+    },
+    "routes/posts.how-to-make-a-static-blog-with-remix-and-mdx": {
+      "id": "routes/posts.how-to-make-a-static-blog-with-remix-and-mdx",
+      "parentId": "root",
+      "path": "posts/how-to-make-a-static-blog-with-remix-and-mdx",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-t6NTteNw.js",
+      "imports": [
+        "/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-wkkhvEBN.js",
+        "/assets/jsx-runtime-BMrMXMSG.js",
+        "/assets/ArticleHeader-CALjWnEo.js"
+      ],
+      "css": []
+    },
+    "routes/_index": {
+      "id": "routes/_index",
+      "parentId": "root",
+      "index": true,
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/_index-jwvOTA8V.js",
+      "imports": [
+        "/assets/posts.everyday-git-aliases-Dga6YXVB.js",
+        "/assets/posts.favorite-albums-of-2020-CldVG6M0.js",
+        "/assets/posts.favorite-albums-of-2021-DtePwQk-.js",
+        "/assets/posts.favorite-albums-of-2022-D9IEL_UE.js",
+        "/assets/posts.favorite-albums-of-2023-DJUImDvU.js",
+        "/assets/posts.favorite-albums-of-2024-A37xJcmz.js",
+        "/assets/posts.favorite-albums-of-2025-SpfJ_KB0.js",
+        "/assets/posts.favorite-albums-of-the-2010s-DCVtAoyg.js",
+        "/assets/posts.how-to-make-a-static-blog-with-remix-and-mdx-wkkhvEBN.js",
+        "/assets/posts.prevent-win-10-from-restarting-DqfhOkpM.js",
+        "/assets/posts.scorn-review-DHF8Jtsp.js",
+        "/assets/posts.virtual-beepis-release-DFe4W5Dz.js",
+        "/assets/posts.virtual-beepis-week-05-CvpNZuwd.js",
+        "/assets/posts.virtual-beepis-week-06-faHd8kJf.js",
+        "/assets/posts.virtual-beepis-week-07-C53K5XUl.js",
+        "/assets/posts.virtual-beepis-week-09-BtdPmSwQ.js",
+        "/assets/posts.virtual-beepis-week-10-DO-2WB05.js",
+        "/assets/posts.virtual-beepis-week-11-gSufQyz0.js",
+        "/assets/posts.virtual-beepis-week-12-DKiu1NeD.js",
+        "/assets/posts.virtual-beepis-week-13-DhBtZvBE.js",
+        "/assets/posts.virtual-beepis-week-14-C0g2UC--.js",
+        "/assets/posts.virtual-beepis-week-15--iRNl93S.js",
+        "/assets/posts.virtual-beepis-week-16-D_P73Z7h.js",
+        "/assets/posts.virtual-beepis-week-17-BrIl7elN.js",
+        "/assets/posts.virtual-beepis-week-18-CdiprGiI.js",
+        "/assets/jsx-runtime-BMrMXMSG.js",
+        "/assets/ArticleHeader-CALjWnEo.js",
+        "/assets/YouTubeEmbed-DiGnTeNs.js"
+      ],
+      "css": []
+    }
+  },
+  "url": "/assets/manifest-2e8396a8.js",
+  "version": "2e8396a8"
+};
+window.__remixRouteModules = {"root":route0,"routes/posts.how-to-make-a-static-blog-with-remix-and-mdx":route1};
+
+import("/assets/entry.client-Cm_jmIF2.js");</script></body></html><!--$?--><template id="B:0"></template><!--/$--><div hidden id="S:0"><script>window.__remixContext.streamController.enqueue("[{\"_1\":2,\"_5\":-5,\"_6\":-5},\"loaderData\",{\"_3\":-5,\"_4\":-5},\"root\",\"routes/posts.how-to-make-a-static-blog-with-remix-and-mdx\",\"actionData\",\"errors\"]\n");</script><!--$?--><template id="B:1"></template><!--/$--></div><script>function $RC(a,b){a=document.getElementById(a);b=document.getElementById(b);b.parentNode.removeChild(b);if(a){a=a.previousSibling;var f=a.parentNode,c=a.nextSibling,e=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d)if(0===e)break;else e--;else"$"!==d&&"$?"!==d&&"$!"!==d||e++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;b.firstChild;)f.insertBefore(b.firstChild,c);a.data="$";a._reactRetry&&a._reactRetry()}};$RC("B:0","S:0")</script><div hidden id="S:1"><script>window.__remixContext.streamController.close();</script></div><script>$RC("B:1","S:1")</script>
