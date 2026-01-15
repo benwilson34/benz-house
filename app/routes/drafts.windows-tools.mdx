@@ -1,0 +1,57 @@
+---
+title: my favorite Windows tools
+datePublished: 2025-03-11T00:00:00-05:00
+---
+
+import ArticleHeader from "../components/ArticleHeader";
+import { formatPageTitle } from "../util/format";
+
+export const meta = () => [{ title: formatPageTitle(frontmatter.title) }];
+
+# {frontmatter.title}
+
+<ArticleHeader
+  datePublished={frontmatter.datePublished}
+  dateUpdated={frontmatter.dateUpdated}
+/>
+
+---
+
+## Launchy
+
+Press `Alt+Space` or another global shortcut to open a prompt where you can type the name of an app to launch it. In theory you could just as well press `Win` once to open the Start Menu then type the name of the app, but I don't like that Bing web search results get mixed in. Years ago I found this app and it enabled me to delete all the icons from my desktop, and I've never gone back.
+
+## XMeters
+
+This adds resource meters to your Taskbar: a bank of meters for CPU usage, and one more for RAM usage. There are also meters for network activity and storage, but I don't use those. This is partly for vanity and partly so I can keep an eye on my system resources.
+
+## PowerToys
+
+A suite of utilities that come endlessly in handy. My favorites are Fancy Zones and the color picker.
+
+## 7+ Taskbar Tweaker
+
+This great little utility does exactly as it's named: it lets you tweak the Taskbar! There are way more options than I need, but here are the ones I use:
+
+- Under "Grouping": Don't group
+- Hide the Start Button
+- Hide the "Show desktop" button
+- Display seconds on the tray clock
+
+## Greenshot
+
+Screenshot utility
+
+## XYplorer
+
+Best Windows file explorer by a mile.
+
+## ConEmu
+
+Terminal emulator.
+
+## Bonus: Quick Link menu and more built-ins
+
+You don't have to install this one, it's already built into Windows! Press `Win+X` to open the Quick Link menu which gives you a bunch of useful shortcuts, like opening the Settings (`Win+X, Y`) or putting your computer to sleep (`Win+X, U, S`).
+
+Windows actually has a bunch of shortcuts built in that I don't see much mention of! Press `Shift+Win+/` to open the hint overlay which lists them all out.
