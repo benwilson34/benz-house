@@ -86,7 +86,7 @@ export default function Index() {
         whatever else interests me.
       </p>
 
-      <p>
+      {/* <p>
         Some recent interests:
         <ul>
           <li>
@@ -111,7 +111,7 @@ export default function Index() {
             )
           </li>
         </ul>
-      </p>
+      </p> */}
 
       <p>
         This is my personal corner of the internet. This is my house. My
